@@ -155,6 +155,16 @@ PLAYERGRAPHTYPE = {
             'wannaType': ('Date', 'line', 'PG_Body Index'),
             'needData':  [('Player', 'Body Fat')]
         }
+    },
+    'Weight Change': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Player Weight'),
+            'needData': [('Player', 'Weight Change')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'nan', 'PG_Player Weight'),
+            'needData': [('Player', 'Weight')]
+        }
     }
 }
 
@@ -187,6 +197,16 @@ DAYGRAPHTYPE = {
         'Line': {
             'wannaType': ('Player', 'scatter', 'DG_Player Mono & Strain'),
             'needData': [('Player', 'Mono')]
+        }
+    },
+    'Player Accel, Decel': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player Accel, Decel'),
+            'needData': [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player Accel, Decel'),
+            'needData': []
         }
     },
     'Day Weight Change': {
@@ -230,6 +250,36 @@ MATCHGRAPHTYPE = {
         'Line': {
             'wannaType': ('Player', 'scatter', 'DG_Player Distance'),
             'needData': [('Player', 'Total Dist.')]
+        }
+    },
+    'Player Total Time & Dist.': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player Total Time & Dist.'),
+            'needData': [('Player', 'TR Time')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & Dist.'),
+            'needData': [('Player', 'Total Dist.')]
+        }
+    },
+    'Player Total Time & HSR': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player Total Time & HSR'),
+            'needData': [('Player', 'TR Time')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & HSR'),
+            'needData': [('Player', 'HSR')]
+        }
+    },
+    'Player Total Time & Sprint': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player Total Time & Sprint'),
+            'needData': [('Player', 'TR Time')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & Sprint'),
+            'needData': [('Player', 'Sprint')]
         }
     },
     'Player Accel, Decel': {
@@ -299,11 +349,12 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
         bottom_base = 0
 
         for i, (key, value) in enumerate(bar_data.items()):
-            if bar_type[1] == 'group' and bar_type[2] == 'DG_Player Weight':
-                ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value > 0).map({True: 'g', False: 'r'}), align='center',
+            if bar_type[1] == 'group' and bar_type[2] in ['PG_Player Weight', 'DG_Player Weight']:
+                ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value > 0).map({True: 'r', False: 'g'}), align='center',
                        width=width, alpha=0.4, label=key)
                 ax.axhline(y=0, c='k', alpha=0.5, ls='--', lw=0.3)
                 point_val = list(temp_data.values())[i]
+                point_val = point_val.values
                 for k, p in enumerate(ax.patches):
                     left, bottom, width, height = p.get_bbox().bounds
                     ax.annotate("%.1f" %
@@ -315,7 +366,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                 else:
                     ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=BARCOLOR[i], align='center',
                            width=width, alpha=0.4, label=key)
-                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel']:
+                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds
                         ax.annotate("%.1f" %
@@ -324,7 +375,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                 ax.bar(xaxis, value, bottom=bottom_base,
                        color=BARCOLOR[i], alpha=0.4, label=key)
                 bottom_base += value
-                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel']:
+                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds
                         ax.annotate("%.2f" % (height), (left+width /
@@ -414,7 +465,7 @@ def plotLine(ax, day_type, line_type, line_data, xlabel, wannasave, val, title, 
             else:
                 return None
 
-            if val and line_type[2] in ['PG_Load', 'PG_Body Index', 'DG_Position Distance']:
+            if val and line_type[2] in ['PG_Load', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
                 for value, xcount, ycount in zip(value, xaxis, value):
                     ax.annotate("%.1f" % value, xy=(
                         xcount, ycount), xytext=(-7, 10), textcoords='offset points', color=LINECOLOR[j][0], fontsize=anno_font)

@@ -273,7 +273,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>300</height>
+                 <height>250</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -351,6 +351,13 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDAccel">
+                  <property name="text">
+                   <string>Accel, Decel</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </widget>
              </item>
@@ -359,7 +366,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>120</height>
+                 <height>140</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -395,6 +402,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
             <layout class="QVBoxLayout" name="verticalLayout_22">
              <item>
               <widget class="QCheckBox" name="checkDayValue">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Value on Graph</string>
                </property>
@@ -677,6 +690,27 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QCheckBox" name="checkMTimeDistance">
+                  <property name="text">
+                   <string>Time, Dist.</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMTimeHSR">
+                  <property name="text">
+                   <string>Time, HSR</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMTimeSprint">
+                  <property name="text">
+                   <string>Time, Sprint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QCheckBox" name="checkMAccel">
                   <property name="minimumSize">
                    <size>
@@ -927,7 +961,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>300</height>
+                 <height>260</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -1026,7 +1060,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>120</height>
+                 <height>140</height>
                 </size>
                </property>
                <property name="title">
@@ -1037,6 +1071,13 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  <widget class="QCheckBox" name="checkSleep">
                   <property name="text">
                    <string>Sleep</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkWeight">
+                  <property name="text">
+                   <string>Weight</string>
                   </property>
                  </widget>
                 </item>

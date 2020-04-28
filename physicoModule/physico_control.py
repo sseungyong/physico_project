@@ -147,4 +147,6 @@ class PhysicoMatch():
         match_excel['position'] = position_df
         match_excel['day'] = match_df
 
+        # first_half, second_half 를 이용하여 -> posiotion 별 데이터 봅아내기
+
         return match_excel

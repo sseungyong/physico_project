@@ -191,6 +191,8 @@ class PhysicoMain(QWidget):
             graph_type.append('Player Distance')
         if self.checkDMono.isChecked() == True:
             graph_type.append('Day Mono, Strain')
+        if self.checkDAccel.isChecked() == True:
+            graph_type.append('Player Accel, Decel')
         if self.checkDWeight.isChecked() == True:
             graph_type.append('Day Weight Change')
         if self.checkDBI.isChecked() == True:
@@ -224,6 +226,8 @@ class PhysicoMain(QWidget):
             graph_type.append('Player Distance')
         if self.checkDMono.isChecked() == True:
             graph_type.append('Day Mono, Strain')
+        if self.checkDAccel.isChecked() == True:
+            graph_type.append('Player Accel, Decel')
         if self.checkDWeight.isChecked() == True:
             graph_type.append('Day Weight Change')
         if self.checkDBI.isChecked() == True:
@@ -270,6 +274,12 @@ class PhysicoMain(QWidget):
             graph_type.append('Position Distance')
         if self.checkMDistancePlayer.isChecked() == True:
             graph_type.append('Player Distance')
+        if self.checkMTimeDistance.isChecked() == True:
+            graph_type.append('Player Total Time & Dist.')
+        if self.checkMTimeHSR.isChecked() == True:
+            graph_type.append('Player Total Time & HSR')
+        if self.checkMTimeSprint.isChecked() == True:
+            graph_type.append('Player Total Time & Sprint')
         if self.checkMAccel.isChecked() == True:
             graph_type.append('Player Accel, Decel')
 
@@ -301,6 +311,12 @@ class PhysicoMain(QWidget):
             graph_type.append('Position Distance')
         if self.checkMDistancePlayer.isChecked() == True:
             graph_type.append('Player Distance')
+        if self.checkMTimeDistance.isChecked() == True:
+            graph_type.append('Player Total Time & Dist.')
+        if self.checkMTimeHSR.isChecked() == True:
+            graph_type.append('Player Total Time & HSR')
+        if self.checkMTimeSprint.isChecked() == True:
+            graph_type.append('Player Total Time & Sprint')
         if self.checkMAccel.isChecked() == True:
             graph_type.append('Accel, Decel')
 
@@ -356,6 +372,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkSprint.text())
         if self.checkSleep.isChecked() == True:
             graph_type.append(self.checkSleep.text())
+        if self.checkWeight.isChecked() == True:
+            graph_type.append('Weight Change')
         if self.checkBI.isChecked() == True:
             graph_type.append(self.checkBI.text())
 
@@ -400,6 +418,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkSprint.text())
         if self.checkSleep.isChecked() == True:
             graph_type.append(self.checkSleep.text())
+        if self.checkWeight.isChecked() == True:
+            graph_type.append('Weight Change')
         if self.checkBI.isChecked() == True:
             graph_type.append(self.checkBI.text())
         if self.checkPlayerValue.isChecked():

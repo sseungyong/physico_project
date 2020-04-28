@@ -32,9 +32,12 @@ class PhysicoPlayerGraph(PhysicoControl):
         unitdata_path = os.path.join(self.base_path, 'unit_config.conf')
         cp = configparser.ConfigParser()
         cp.read(unitdata_path)
-        if cp.sections():
+        print(unitdata_path)
+        if 'HIGHESTY' in cp.sections():
+            print("success load unit data!")
             return cp
         else:
+            print("fail load unit data...")
             return None
 
     def settingData(self, name, fromDate, toDate, gtype):
@@ -49,13 +52,17 @@ class PhysicoPlayerGraph(PhysicoControl):
                                                      'TR Time':].fillna(0)
         player_data = player_data.round(1)
         team_data = team_data.round(1)
-        xlabel = np.array([str(x) for x in player_data.index.values])
+        # xlabel = np.array([str(x) for x in player_data.index.values])
         graph_setting = [PLAYERGRAPHTYPE[gt] for gt in gtype]
 
-        return player_data, team_data, xlabel, graph_setting
+        return player_data, team_data, graph_setting
 
     def getBarData(self, player_data, team_data, contentDict):
         bar_type = contentDict['wannaType']
+        if bar_type[2] == 'PG_Body Index':
+            player_data = player_data[['Weight', 'Body Muscle', 'Body Fat']]
+            player_data = player_data.replace(0, np.nan)
+            player_data = player_data.dropna()
         content_list = contentDict['needData']
         bar_dict = {}
         for (name, content) in content_list:
@@ -64,10 +71,16 @@ class PhysicoPlayerGraph(PhysicoControl):
             else:
                 bar_dict[content] = player_data[content]
 
-        return bar_type, bar_dict
+        xlabel = np.array([str(x) for x in player_data.index.values])
+
+        return bar_type, bar_dict, xlabel
 
     def getLineData(self, player_data, team_data, contentDict):
         line_type = contentDict['wannaType']
+        if line_type[2] == 'PG_Body Index':
+            player_data = player_data[['Weight', 'Body Muscle', 'Body Fat']]
+            player_data = player_data.replace(0, np.nan)
+            player_data = player_data.dropna()
         content_list = contentDict['needData']
         line_dict = {}
         for (name, content) in content_list:
@@ -88,9 +101,9 @@ class PhysicoPlayerGraph(PhysicoControl):
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
 
-        player_data, team_data, xlabel, graph_setting = self.settingData(
+        player_data, team_data, graph_setting = self.settingData(
             name, fromDate, toDate, gtype)
-        bar_type, bar_data = self.getBarData(
+        bar_type, bar_data, xlabel = self.getBarData(
             player_data, team_data, graph_setting[0]['Bar'])
         line_type, line_data = self.getLineData(
             player_data, team_data, graph_setting[0]['Line'])
@@ -133,7 +146,7 @@ class PhysicoPlayerGraph(PhysicoControl):
             fig_size_y = FIGSIZEY
 
         # data setting
-        player_data, team_data, xlabel, graph_setting = self.settingData(
+        player_data, team_data, graph_setting = self.settingData(
             name, fromDate, toDate, gtype)
 
         fig_length = len(graph_setting)
@@ -142,7 +155,7 @@ class PhysicoPlayerGraph(PhysicoControl):
         # fig.set_size_inches(fig_size_x, 6*fig_length, forward=True)
 
         for gi, gt in enumerate(gtype):
-            bar_type, bar_data = self.getBarData(
+            bar_type, bar_data, xlabel = self.getBarData(
                 player_data, team_data, graph_setting[gi]['Bar'])
             line_type, line_data = self.getLineData(
                 player_data, team_data, graph_setting[gi]['Line'])
@@ -196,6 +209,7 @@ class PhysicoDayGraph(PhysicoControl):
         unitdata_path = os.path.join(self.base_path, 'unit_config.conf')
         cp = configparser.ConfigParser()
         cp.read(unitdata_path)
+        print(unitdata_path)
         if 'HIGHESTY' in cp.sections():
             print("success load unit data!")
             return cp
@@ -387,7 +401,6 @@ class PhysicoMatchGraph(PhysicoMatch):
         cp = configparser.ConfigParser()
         cp.read(unitdata_path)
         print(unitdata_path)
-        print(cp.sections())
         if 'HIGHESTY' in cp.sections():
             print("success load unit data!")
             return cp
