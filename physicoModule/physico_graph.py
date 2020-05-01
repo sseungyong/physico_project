@@ -5,8 +5,9 @@ import openpyxl
 import configparser
 from physicoModule import config
 import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
 from physicoModule.physico_control import PhysicoControl, PhysicoMatch
-from physicoModule.physico_plotfnc import BARCOLOR, LINECOLOR, GRAPHUNIT, HIGHESTY, PLAYERGRAPHTYPE, DAYGRAPHTYPE, MATCHGRAPHTYPE, TRPOSITIONLIST, MPOSITIONLIST
+from physicoModule.physico_plotfnc import HIGHESTY, PLAYERGRAPHTYPE, DAYGRAPHTYPE, MATCHGRAPHTYPE, MATCHPERIODGRAPHTYPE, TRPOSITIONLIST, MPOSITIONLIST
 from physicoModule.physico_plotfnc import plotBar, plotLine
 
 # base_path = config.ROOT_CONFIG['base']
@@ -571,4 +572,193 @@ class PhysicoMatchGraph(PhysicoMatch):
         else:
             fig = self.makeMultiGraph(
                 matchCamp, matchDate, matchInfo, gtype, wannasave, val)
+        return fig
+
+
+class PhysicoMatchPeriodGraph(PhysicoMatch):
+    def __init__(self, PMANAGE):
+        super().__init__(PMANAGE)
+        self.unit_data = self.__loadUnitData()
+
+    def __loadUnitData(self):
+        unitdata_path = os.path.join(self.base_path, 'unit_config.conf')
+        cp = configparser.ConfigParser()
+        cp.read(unitdata_path)
+        print(unitdata_path)
+        if 'HIGHESTY' in cp.sections():
+            print("success load unit data!")
+            return cp
+        else:
+            print("fail load unit data...")
+            return None
+
+    def settingData(self, matchCamp, matchDate, matchInfo, period, gtype):
+        pre_day = datetime.strptime(matchDate, '%Y%m%d') - timedelta(days=1)
+        pre_day = datetime.strftime(pre_day, '%Y%m%d')
+        print(pre_day)
+
+        period = period + 1
+
+        matchData = super().matchTeamData(matchCamp, matchDate, matchInfo)
+
+        day_type, position_data, player_data = matchData['type'], matchData['position'], matchData['day']
+
+        match_df = position_data.loc['Total Avg.', :]
+        player_data = player_data[player_data['Position'] != 'R']
+        player_name = player_data['Name'].values
+
+        player_df = pd.DataFrame()
+        for name in player_name:
+            data = self.player_set[name]
+            data = data.reset_index()
+            player_df = player_df.append(data, sort=False, ignore_index=True)
+
+        team_data = self.player_set['Team']
+        team_data = team_data.set_index('Date')[
+            ['Total Dist.', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
+        team_data.columns = ['Team_{}'.format(
+            col) for col in team_data.columns]
+        team_data = team_data.loc[:matchDate, :]
+        team_data = team_data.rename(index={int(matchDate): 'Match Day'})
+
+        period_df = player_df.groupby('Date').mean()
+
+        period_data = period_df[['Total Dist.', 'MSR',
+                                 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
+        period_data = period_data.loc[:pre_day, :]
+        match_data = match_df[['Total Dist.', 'MSR',
+                               'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
+        match_data = pd.DataFrame([match_data.values], index=['Match Day'], columns=[
+                                  'Total Dist.', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load'])
+        period_data = period_data.append(match_data, sort=False)
+        period_data = pd.concat([period_data, team_data], axis=1)
+        period_data = period_data.iloc[-period:, :]
+
+        graph_setting = [MATCHPERIODGRAPHTYPE[gt] for gt in gtype]
+
+        return day_type, period_data, graph_setting
+
+    def getBarData(self, period_data, contentDict):
+        bar_type = contentDict['wannaType']
+        content_list = contentDict['needData']
+        bar_dict = {}
+        for (name, content) in content_list:
+            bar_dict[content] = period_data[content]
+
+        return bar_type, bar_dict
+
+    def getLineData(self, period_data, contentDict):
+        line_type = contentDict['wannaType']
+        content_list = contentDict['needData']
+        line_dict = {}
+        for (name, content) in content_list:
+            line_dict[content] = period_data[content]
+
+        return line_type, line_dict
+
+    def makeSingleGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+        try:
+            fig_size_x = int(self.unit_data['GRAPH SIZE']['Xsize'])
+            fig_size_y = int(self.unit_data['GRAPH SIZE']['Ysize'])
+        except:
+            fig_size_x = FIGSIZEX
+            fig_size_y = FIGSIZEY
+
+        day_type, period_data, graph_setting = self.settingData(
+            matchCamp, matchDate, matchInfo, period, gtype)
+        bar_type, bar_data = self.getBarData(
+            period_data, graph_setting[0]['Bar'])
+        line_type, line_data = self.getLineData(
+            period_data, graph_setting[0]['Line'])
+
+        # basic information
+        xlabel = period_data.index
+
+        # window setting
+        fig, ax = plt.subplots(1, 1, figsize=(fig_size_x, fig_size_y))
+        # fig.set_size_inches(fig_size_x, 6, forward=True)
+        ax_twinx = ax.twinx()
+
+        # draw left graph
+        plotBar(ax, day_type, bar_type, bar_data,
+                xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+        # draw right graph
+        plotLine(ax_twinx, day_type, line_type,
+                 line_data, xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+
+        if wannasave:
+            fig.tight_layout()
+            title = "{}__{}_{} graph".format(matchDate, matchInfo, gtype[0])
+            save_path = os.path.join(
+                self.base_path, graph_path, config.IMAGE_CONFIG[gtype[0]], title+'.png')
+            plt.savefig(save_path, dpi=300)
+            plt.close()
+            return None
+        else:
+            fig.set_size_inches(fig_size_y, 4)
+            fig.tight_layout()
+            return fig
+
+    def makeMultiGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+        try:
+            fig_size_x = int(self.unit_data['GRAPH SIZE']['Xsize'])
+            fig_size_y = int(self.unit_data['GRAPH SIZE']['Ysize'])
+        except:
+            fig_size_x = FIGSIZEX
+            fig_size_y = FIGSIZEY
+
+        # data setting
+        day_type, period_data, graph_setting = self.settingData(
+            matchCamp, matchDate, matchInfo, period, gtype)
+
+        fig_length = len(graph_setting)
+        fig, ax = plt.subplots(fig_length, 1, figsize=(
+            fig_size_x, fig_size_y*fig_length))
+        # fig.set_size_inches(fig_size_x, 6*fig_length, forward=True)
+
+        for gi, gt in enumerate(gtype):
+            bar_type, bar_data = self.getBarData(
+                period_data, graph_setting[gi]['Bar'])
+            line_type, line_data = self.getLineData(
+                period_data, graph_setting[gi]['Line'])
+
+            # basic information
+            xlabel = period_data.index
+
+            # window setting
+            ax_twinx = ax[gi].twinx()
+
+            plotBar(ax[gi], day_type, bar_type, bar_data,
+                    xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+            # draw right graph
+            plotLine(ax_twinx, day_type, line_type, line_data,
+                     xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+
+        # graph label setting
+        # plt.subplots_adjust(wspace=10.)
+        fig.tight_layout()
+
+        if wannasave:
+            fig.tight_layout()
+            title = "{}__{}_{} graph".format(matchDate, matchInfo, 'Total')
+            save_path = os.path.join(
+                self.base_path, graph_path, config.IMAGE_CONFIG['Total'], title+'.png')
+            plt.savefig(save_path, dpi=300)
+            plt.close()
+            return None
+        else:
+            fig.set_size_inches(fig_size_y, 4*fig_length)
+            fig.tight_layout()
+            return fig
+
+    def makeGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+        gnum = len(gtype)
+        if gnum == 0:
+            fig = None
+        elif gnum == 1:
+            fig = self.makeSingleGraph(
+                matchCamp, matchDate, matchInfo, period, gtype, wannasave, val)
+        else:
+            fig = self.makeMultiGraph(
+                matchCamp, matchDate, matchInfo, period, gtype, wannasave, val)
         return fig

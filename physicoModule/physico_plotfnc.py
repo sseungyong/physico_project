@@ -13,7 +13,7 @@ matplotlib.rc('font', family=font_name)
 matplotlib.rcParams['axes.unicode_minus'] = False
 
 LINECOLOR = {0: 'ks--', 1: 'gs--', 2: 'ms--', 3: 'rs--'}
-BARCOLOR = {0: 'y', 1: 'b', 2: 'r', 3: 'k'}
+DEFAULTBARCOLOR = {0: 'y', 1: 'b', 2: 'r', 3: 'k'}
 GRAPHUNIT = {
     'Height': 'Height(cm)',
     'Weight': 'Weight(kg)',
@@ -294,6 +294,39 @@ MATCHGRAPHTYPE = {
     }
 }
 
+MATCHPERIODGRAPHTYPE = {
+    'Period Distance': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Player Distance'),
+            'needData': [('Player', 'MSR'), ('Player', 'HSR'), ('Player', 'Sprint')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'line', 'PG_Player Distance'),
+            'needData': [('Player', 'Total Dist.'), ('Player', 'Team_Total Dist.')]
+        }
+    },
+    'Period Accel, Decel': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Player Accel, Decel'),
+            'needData': [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'line', 'PG_Player Accel, Decel'),
+            'needData': [('Player', 'Team_Accel Cnt.'), ('Player', 'Team_Decel Cnt.')]
+        }
+    },
+    'Period Load': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Player Load'),
+            'needData': [('Player', 'Total Dist.')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'line', 'PG_Player Load'),
+            'needData': [('Player', 'GPS PL'), ('Player', 'Load'), ('Player', 'Team_Load')]
+        }
+    },
+}
+
 TRPOSITIONLIST = ['CB', 'SB', 'FB', 'CMF',
                   'DMF', 'AMF', 'MF', 'WF', 'FW', 'Team']
 MPOSITIONLIST = ['1st Half Avg.',
@@ -361,10 +394,10 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                                 (point_val[k]), (left+width/2, height/2), ha='center', fontsize=anno_font)
             elif bar_type[1] == 'group':
                 if bar_type[2] in ['PG_Mono & Strain', 'DG_Player Mono & Strain']:
-                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: BARCOLOR[i], False: 'r'}), align='center',
+                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: DEFAULTBARCOLOR[i], False: 'r'}), align='center',
                            width=width, alpha=0.4, label=key)
                 else:
-                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=BARCOLOR[i], align='center',
+                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=DEFAULTBARCOLOR[i], align='center',
                            width=width, alpha=0.4, label=key)
                 if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
                     for p in ax.patches:
@@ -373,7 +406,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                                     (height), (left+width/2, height/2), ha='center', fontsize=anno_font)
             elif bar_type[1] == 'stack':
                 ax.bar(xaxis, value, bottom=bottom_base,
-                       color=BARCOLOR[i], alpha=0.4, label=key)
+                       color=DEFAULTBARCOLOR[i], alpha=0.4, label=key)
                 bottom_base += value
                 if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
                     for p in ax.patches:
@@ -498,7 +531,7 @@ def plotLine(ax, day_type, line_type, line_data, xlabel, wannasave, val, title, 
 [Player Graph]
 Distance : Line(Total_dist) mean HL(red), annotation Bar only
 Load : Line(GPS_PL) mean HL(red)
-Mono & Strain : Bar(strain) > 6,000 BarColor(Red), if possible Line(mono) < 1.1 / < 1.8 / else
+Mono & Strain : Bar(strain) > 6,000 DEFAULTBARCOLOR(Red), if possible Line(mono) < 1.1 / < 1.8 / else
 MSR, HSR, Sprint : 
 Weight : 
 Body Index :
@@ -506,7 +539,7 @@ Body Index :
 [Day Graph] 
 Position Distance : Scatter(Total_dist) mean HL(red), annotation Bar & Line
 Player Distance : Scatter(Total_dist) mean HL(red), annotation Bar only
-Player Mono & Strain : Bar(strain) > 6,000 BarColor(Red), if possible Scatter(mono) < 1.1 / < 1.8 / else
+Player Mono & Strain : Bar(strain) > 6,000 DEFAULTBARCOLOR(Red), if possible Scatter(mono) < 1.1 / < 1.8 / else
 Player Weight : 
 
 {Bar annotation}
