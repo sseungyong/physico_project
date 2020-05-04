@@ -34,7 +34,8 @@ class PhysicoControl():
             value['Weight Change'] = value['Weight Change']*100
             value['MSR %'] = value['MSR']*100/value['Total Dist.']
             value['HSR %'] = value['HSR']*100/value['Total Dist.']
-            value['Sprint %'] = value['Sprint']*100/value['Total Dist.']
+            value['Sprint %'] = value['Sprint'] * \
+                100/value['Total Dist.']
             value.loc[:, 'TR Time':] = value.loc[:,
                                                  'TR Time':].round(1)
 
@@ -62,6 +63,8 @@ class PhysicoControl():
         day_df = day_df.sort_values(by='No.', axis=0)
         day_df['No.'] = day_df['No.'].astype(int)
         day_df.index = pd.RangeIndex(1, len(day_df)+1)
+        day_df = day_df[['Name', 'Position', 'Type', 'Type Info.', 'RPE', 'TR Time', 'Total Dist.', 'Dist. per min',
+                         'HSR+Sprint', 'MSR', 'MSR %', 'HSR', 'HSR %', 'Sprint', 'Sprint %', 'Accel Cnt.', 'Decel Cnt.', 'Max Speed', 'GPS PL', 'Load', 'Injury', 'Mono', 'Strain', 'EWAM']]
 
         position_df = self.day_set[str(date)]['Data']
         position_list = []
@@ -71,6 +74,8 @@ class PhysicoControl():
         position_df = position_df.reindex(index=position_list)
         position_df = position_df.reset_index()
         position_df = position_df.rename(columns={'index': 'Position'})
+        position_df = position_df[['Position', 'TR Time', 'Total Dist.', 'Dist. per min',
+                                   'HSR+Sprint', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'Max Speed', 'GPS PL', 'Load']]
 
         self.day_excel['type'] = 'TR'
         self.day_excel['position'] = position_df
@@ -82,6 +87,7 @@ class PhysicoMatch():
     def __init__(self, PMANAGE):
         self.base_path = PMANAGE.base_path
         self.match_set = PMANAGE.match_set
+        self.player_set = PMANAGE.player_set
 
     def matchTeamData(self, matchCamp, matchDate, matchInfo):
         match_excel = {}
@@ -149,4 +155,4 @@ class PhysicoMatch():
 
         # first_half, second_half 를 이용하여 -> posiotion 별 데이터 봅아내기
 
-        return match_excel
+        return match_excel, first_half, second_half

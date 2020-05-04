@@ -145,7 +145,7 @@ class ExcelMatch(PhysicoMatch):
                 os.remove(file_path)
 
             for (match_camp, match_date, match_info) in match_set.keys():
-                match_excel = self.matchTeamData(
+                match_excel, _, _ = self.matchTeamData(
                     match_camp, match_date, match_info)
                 wtype, position, day = match_excel['type'], match_excel['position'][
                     self.MATCHPOSITION_COLUMNS], match_excel['day'][self.MATCHPLAYER_COLUMNS]
@@ -172,7 +172,8 @@ class ExcelMatch(PhysicoMatch):
                     writer.save()
                     writer.close()
         else:
-            match_excel = self.matchTeamData(matchCamp, matchDate, matchInfo)
+            match_excel, _, _ = self.matchTeamData(
+                matchCamp, matchDate, matchInfo)
             file_path = os.path.join(
                 self.output_excel_path, config.RESULT_CONFIG['match'], 'result_of_{}({}).xlsx'.format(matchDate, matchInfo))
             wtype, position, day = match_excel['type'], match_excel['position'][

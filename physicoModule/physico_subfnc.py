@@ -16,6 +16,12 @@ def sumNanStr(a, b):
     return np.where(ma & mb, '', np.where(ma, '', a).astype('O')+'/' + np.where(mb, '', b).astype('O'))
 
 
+def sumPositionStr(a, b):
+    ma = a.astype('str') == 'R'
+    mb = a.astype('str') == 'R'
+    return np.where(ma & mb, 'R', np.where(ma, '', a).astype('O')+'/' + np.where(mb, '', b).astype('O'))
+
+
 def sumDuplicateStr(a, b):
     assert len(a) == len(b)
     sum_str = np.zeros(a.shape, dtype='O')

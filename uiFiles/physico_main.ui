@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1104</width>
+    <width>1103</width>
     <height>800</height>
    </rect>
   </property>
@@ -45,7 +45,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabIntro">
       <attribute name="title">
@@ -227,7 +227,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>889</width>
+              <width>888</width>
               <height>683</height>
              </rect>
             </property>
@@ -578,7 +578,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>889</width>
+              <width>871</width>
               <height>683</height>
              </rect>
             </property>
@@ -639,6 +639,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <layout class="QVBoxLayout" name="verticalLayout_30">
                 <item>
                  <widget class="QLabel" name="label_3">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -646,12 +652,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    </size>
                   </property>
                   <property name="text">
-                   <string>Position</string>
+                   <string>Time</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkMDistancePosition">
+                 <widget class="QCheckBox" name="checkMDistanceTime">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -664,7 +670,58 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Position</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMDistancePositionAvg">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Distance (Avg)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMDistancePositionSum">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Distance (Sum)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="label_4">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -691,6 +748,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkMTimeDistance">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Time, Dist.</string>
                   </property>
@@ -698,6 +761,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkMTimeHSR">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Time, HSR</string>
                   </property>
@@ -705,8 +774,21 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="checkMTimeSprint">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Time, Sprint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMTimeDPM">
+                  <property name="text">
+                   <string>Time, Dist. / min</string>
                   </property>
                  </widget>
                 </item>
@@ -779,11 +861,11 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
      </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>MR-Graph</string>
+       <string>MP-Graph</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_9">
        <item>
-        <widget class="QScrollArea" name="scrollAreaMatchGraph_2">
+        <widget class="QScrollArea" name="scrollAreaMatchPeriodGraph">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -807,7 +889,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>891</width>
+            <width>880</width>
             <height>685</height>
            </rect>
           </property>
@@ -819,7 +901,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_38">
            <item>
-            <widget class="QLabel" name="labelMRGraphDate">
+            <widget class="QLabel" name="labelMPGraphDate">
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -832,7 +914,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboMRGraphDate">
+            <widget class="QComboBox" name="comboMPGraphDate">
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -845,7 +927,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="labelMRPeriod">
+            <widget class="QLabel" name="labelMPPeriod">
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -855,33 +937,79 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <property name="text">
               <string>Period</string>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+             </property>
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinMRPeriod">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>14</number>
-             </property>
-            </widget>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelMPb">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>befor</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelMPa">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>after</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinMPafter">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>14</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinMPbefor">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>14</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_39">
            <item>
-            <widget class="QGroupBox" name="groupMRGraphWork">
+            <widget class="QGroupBox" name="groupMPGraphWork">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -899,20 +1027,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_40">
               <item>
-               <widget class="QLabel" name="label_8">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Team</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkMRDistance">
+               <widget class="QCheckBox" name="checkMPDistance">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -925,28 +1040,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkMRMSR">
-                <property name="text">
-                 <string>MSR</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkMRHSR">
-                <property name="text">
-                 <string>HSR</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkMRSprint">
-                <property name="text">
-                 <string>Sprint</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkMRAccel">
+               <widget class="QCheckBox" name="checkMPAccel">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -958,6 +1052,19 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QCheckBox" name="checkMPLoad">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Load</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -966,7 +1073,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_41">
            <item>
-            <widget class="QCheckBox" name="checkMRCompare">
+            <widget class="QCheckBox" name="checkMPCompare">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -974,19 +1081,19 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
               </size>
              </property>
              <property name="text">
-              <string>On Compare</string>
+              <string>On/Off Compare</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkMRValue">
+            <widget class="QCheckBox" name="checkMPValue">
              <property name="text">
               <string>Value on Graph</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonMGraphRun_3">
+            <widget class="QPushButton" name="pushButtonMPGraphRun">
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -1002,7 +1109,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonMGraphSave_3">
+            <widget class="QPushButton" name="pushButtonMPGraphSave">
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -1109,7 +1216,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>889</width>
+              <width>888</width>
               <height>683</height>
              </rect>
             </property>
@@ -1549,6 +1656,162 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonDtypeGraphSave">
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(236, 236, 117);</string>
+              </property>
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Match Day Graph (by position or player name)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_31">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_33">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Type</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboSaveMtypeGraph">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_34">
+            <item>
+             <widget class="QCheckBox" name="checkVMG">
+              <property name="text">
+               <string>Value on Graph</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonMtypeGraphSave">
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(236, 236, 117);</string>
+              </property>
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Match Period Graph (by player name)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_35">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>Type</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboSaveMPtypeGraph">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_36">
+            <item>
+             <widget class="QCheckBox" name="checkVMPG">
+              <property name="text">
+               <string>Value on Graph</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonMPtypeGraphSave">
               <property name="minimumSize">
                <size>
                 <width>250</width>

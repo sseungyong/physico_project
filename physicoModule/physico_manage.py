@@ -25,9 +25,9 @@ class PhysicoManage():
     FOLDERLIST = ['input', 'output', 'backup', 'graph']
     INPUTLIST = ['workout', 'wellness']
     RESULTLIST = ['day', 'player', 'match']
-    IMAGELIST = ['Total', 'Position Distance', 'Player Distance', 'Day Mono, Strain',  'Player Accel, Decel', 'Day Weight Change', 'Distance', 'Load',
-                 'Mono, Strain', 'MSR', 'HSR', 'Sprint', 'Sleep']
-    WORKWELL_COLUMNS = ['No.', 'Camp', 'Date', 'Name', 'Position', 'Type', 'Type Info.', 'RPE', 'TR Time', 'Total Dist.', 'Dist. per min', 'HSR+Sprint', 'MSR', 'HSR', 'Sprint',
+    IMAGELIST = ['Day Graph', 'Match Day Graph',
+                 'Match Period Graph', 'Player Graph']
+    WORKWELL_COLUMNS = ['dayOn', 'No.', 'Camp', 'Date', 'Name', 'Position', 'Type', 'Type Info.', 'RPE', 'TR Time', 'Total Dist.', 'Dist. per min', 'HSR+Sprint', 'MSR', 'HSR', 'Sprint',
                         'Accel Cnt.', 'Decel Cnt.', 'Max Speed', 'GPS PL', 'Load', 'Injury', 'Memo', 'Age', 'Sleep Time', 'Sleep', 'Tired', 'Stressed', 'Muscle', 'Height', 'Weight', 'Body Muscle', 'Body Fat']
 
     def __init__(self, base_dir):
@@ -65,6 +65,34 @@ class PhysicoManage():
                 self.base_path, graph_path, config.IMAGE_CONFIG[image])
             if not os.path.isdir(directory):
                 os.makedirs(directory)
+            if image == 'Day Graph':
+                sub = config.IMAGE_DAY_CONFIG
+                for value in sub.values():
+                    sub_dir = directory = os.path.join(
+                        self.base_path, graph_path, config.IMAGE_CONFIG[image], value)
+                    if not os.path.isdir(sub_dir):
+                        os.makedirs(sub_dir)
+            elif image == 'Match Day Graph':
+                sub = config.IMAGE_MATCHDAY_CONFIG
+                for value in sub.values():
+                    sub_dir = directory = os.path.join(
+                        self.base_path, graph_path, config.IMAGE_CONFIG[image], value)
+                    if not os.path.isdir(sub_dir):
+                        os.makedirs(sub_dir)
+            elif image == 'Match Period Graph':
+                sub = config.IMAGE_MATCHPERIOD_CONFIG
+                for value in sub.values():
+                    sub_dir = directory = os.path.join(
+                        self.base_path, graph_path, config.IMAGE_CONFIG[image], value)
+                    if not os.path.isdir(sub_dir):
+                        os.makedirs(sub_dir)
+            elif image == 'Player Graph':
+                sub = config.IMAGE_PLAYER_CONFIG
+                for value in sub.values():
+                    sub_dir = directory = os.path.join(
+                        self.base_path, graph_path, config.IMAGE_CONFIG[image], value)
+                    if not os.path.isdir(sub_dir):
+                        os.makedirs(sub_dir)
 
     def __loadDataSet(self, param):
         load_path = os.path.join(
@@ -276,7 +304,7 @@ class PhysicoManage():
             else:
                 for name in unique_name:
                     if not name in session_name:
-                        unique_name.remove(name)
+                        unique_name.append(name)
                 # Type
                 merged_info['Type'] = psf.sumNanStr(
                     merged_info['Type'], value['Type'])
@@ -293,10 +321,11 @@ class PhysicoManage():
         merged_data = merged_data.round(1)
         # merge info, data
         merged_df = pd.concat([merged_info, merged_data], axis=1)
+        merged_df['dayOn'] = merged_df.Name.apply(lambda x: x in unique_name)
         workout_date = str(wInfo['Date'].values[0])
         self.file_set[workout_date]['Player'] = unique_name
 
-        # Write DB
+        # Write dayInfo DB
         db_data = self.file_set[workout_date]
         db_data = pd.DataFrame([db_data.values()], columns=db_data.keys())
         db_data['Date'] = workout_date

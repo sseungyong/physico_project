@@ -37,21 +37,56 @@ RESULT_CONFIG = {
 }
 
 IMAGE_CONFIG = {
-    'Position Distance': '#001_Day Position Distance',
-    'Player Distance': '#002_Day Player Distance',
-    'Day Mono, Strain': '#003_Day Mono, Strain',
-    'Player Accel, Decel': '#004_Day Accel, Decel',
-    'Day Weight Change': '#005_Day Wellness',
-    'Day Body Index': '#005_Day Wellness',
-    'Distance': '#006_Player Distance',
-    'Load': '#007_Player Load',
-    'Mono, Strain': '#008_Player Mono, Strain',
-    'MSR': '#009_Player MSR',
-    'HSR': '#010_Player HSR',
-    'Sprint': '#011_Player Sprint',
-    'Sleep': '#012_Player Wellness',
-    'Body Index': '#012_Player Wellness',
-    'Total': '#013_Total'
+    'Day Graph': '#001_Day Graph',
+    'Match Day Graph': '#002_Match Day Graph',
+    'Match Period Graph': '#003_Match Period Graph',
+    'Player Graph': '#004_Player Graph',
+}
+
+IMAGE_DAY_CONFIG = {
+    'Position Distance': '#0001_Day Position Distance',
+    'Player Distance': '#0002_Day Player Distance',
+    'Day Mono, Strain': '#0003_Day Mono, Strain',
+    'Player Accel, Decel': '#0004_Day Accel, Decel',
+    'Day Weight Change': '#0005_Day Wellness',
+    'Day Body Index': '#0005_Day Wellness',
+    'Total': '#0006_Total'
+}
+
+IMAGE_MATCHDAY_CONFIG = {
+    'Team Time Distance': '#0001_Team Distance',
+    'Position Average Distance': '#0002_Position Distance',
+    'Position Sum Distance': '#0002_Position Distance',
+    'Player Distance': '#0003_Player Distance',
+    'Player Total Time & Dist.': '#0004_Player Time & Dist.',
+    'Player Total Time & HSR': '#0005_Player Time & HSR',
+    'Player Total Time & Sprint': '#0006_Player Time & Sprint',
+    'Player Total Time & Dist./min': '#0007_Player Time & Dist. per min',
+    'Player Accel, Decel': '#0008_Player Accel, Decel',
+    'Total': '#0009_Total'
+}
+
+IMAGE_MATCHPERIOD_CONFIG = {
+    'Period Team Distance': '#0001_Team Distance',
+    'Period Team Accel, Decel': '#0002_Team Accel, Decel',
+    'Period Team Load': '#0003_Team Load',
+    # On / Off
+    'Period OnOff Distance': '#0001_Team Distance',
+    'Period OnOff Accel, Decel': '#0002_Team Accel, Decel',
+    'Period OnOff Load': '#0003_Team Load',
+    'Total': '#0004_Total'
+}
+
+IMAGE_PLAYER_CONFIG = {
+    'Distance': '#0001_Player Distance',
+    'Load': '#0002_Player Load',
+    'Mono, Strain': '#0003_Player Mono, Strain',
+    'MSR': '#0004_Player MSR',
+    'HSR': '#0005_Player HSR',
+    'Sprint': '#0006_Player Sprint',
+    'Sleep': '#0007_Player Wellness',
+    'Body Index': '#0007_Player Wellness',
+    'Total': '#0008_Total'
 }
 
 DB_CONFIG = {

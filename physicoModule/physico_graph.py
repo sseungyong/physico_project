@@ -7,7 +7,8 @@ from physicoModule import config
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from physicoModule.physico_control import PhysicoControl, PhysicoMatch
-from physicoModule.physico_plotfnc import HIGHESTY, PLAYERGRAPHTYPE, DAYGRAPHTYPE, MATCHGRAPHTYPE, MATCHPERIODGRAPHTYPE, TRPOSITIONLIST, MPOSITIONLIST
+from physicoModule.physico_plotset import PLAYERGRAPHTYPE, DAYGRAPHTYPE, MATCHGRAPHTYPE, MATCHPERIODGRAPHTYPE
+from physicoModule.physico_plotfnc import HIGHESTY, TRPOSITIONLIST, MPOSITIONLIST
 from physicoModule.physico_plotfnc import plotBar, plotLine
 
 # base_path = config.ROOT_CONFIG['base']
@@ -127,7 +128,7 @@ class PhysicoPlayerGraph(PhysicoControl):
             title = "{}'s {} graph ({}~{})".format(
                 name, gtype[0], fromDate, toDate)
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG[gtype[0]], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Player Graph'], config.IMAGE_PLAYER_CONFIG[gtype[0]], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -179,7 +180,7 @@ class PhysicoPlayerGraph(PhysicoControl):
             title = "{}'s {} graph ({}~{})".format(
                 name, 'Total', fromDate, toDate)
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG['Total'], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Player Graph'], config.IMAGE_PLAYER_CONFIG['Total'], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -251,7 +252,7 @@ class PhysicoDayGraph(PhysicoControl):
                     player_data[player_data['Position'] == position])
             except:
                 pass
-
+        player_df = player_df.round(1)
         graph_setting = [DAYGRAPHTYPE[gt] for gt in gtype]
 
         return day_type, position_data, player_df, graph_setting
@@ -317,7 +318,7 @@ class PhysicoDayGraph(PhysicoControl):
             fig.tight_layout()
             title = "{}__{} graph".format(date, gtype[0])
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG[gtype[0]], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Day Graph'], config.IMAGE_DAY_CONFIG[gtype[0]], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -372,7 +373,7 @@ class PhysicoDayGraph(PhysicoControl):
             fig.tight_layout()
             title = "{}__{} graph".format(date, 'Total')
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG['Total'], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Day Graph'], config.IMAGE_DAY_CONFIG['Total'], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -393,6 +394,11 @@ class PhysicoDayGraph(PhysicoControl):
 
 
 class PhysicoMatchGraph(PhysicoMatch):
+    position_columns = ['TR Time', 'Total Dist.', 'Dist. per min',
+                        'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.']
+    position_sumcol = ['TR Time <SUM>', 'Total Dist. <SUM>', 'Dist. per min <SUM>',
+                       'MSR <SUM>', 'HSR <SUM>', 'Sprint <SUM>', 'Accel Cnt. <SUM>', 'Decel Cnt. <SUM>']
+
     def __init__(self, PMANAGE):
         super().__init__(PMANAGE)
         self.unit_data = self.__loadUnitData()
@@ -410,7 +416,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             return None
 
     def settingData(self, matchCamp, matchDate, matchInfo, gtype):
-        matchData = super().matchTeamData(matchCamp, matchDate, matchInfo)
+        matchData, fh, sh = super().matchTeamData(matchCamp, matchDate, matchInfo)
 
         day_type, position_data, player_data = matchData['type'], matchData['position'], matchData['day']
 
@@ -419,6 +425,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             if position in position_data.index:
                 exist_list.append(position)
         position_data = position_data.reindex(index=exist_list)
+        position_data = position_data.round(1)
 
         player_data['MSR %'] = player_data['MSR'] * \
             100/player_data['Total Dist.']
@@ -433,29 +440,67 @@ class PhysicoMatchGraph(PhysicoMatch):
         player_data = player_data[player_data['Position'] != 'GK']
         player_data = player_data.set_index('Name')
 
+        # Full Time player Data
+        full_time = player_data[(player_data['TR Time'] >= 90) & (
+            player_data['Position'] != 'GK')]
+        position_avg = full_time.groupby('Position').mean().round(1)[
+            self.position_columns]
+        exist_list = []
+        for position in TRPOSITIONLIST:
+            if position in position_avg.index:
+                exist_list.append(position)
+        position_avg = position_avg.reindex(index=exist_list).round(1)
+
+        # All Position Player Data
+        ft = fh[(fh.Type == 'M') & (fh.Position != 'GK') & (
+            fh.Position != 'R')].groupby('Position').sum()[self.position_columns]
+        st = sh[(sh.Type == 'M') & (sh.Position != 'GK') & (
+            sh.Position != 'R')].groupby("Position").sum()[self.position_columns]
+        ft.columns = self.position_sumcol
+        st.columns = self.position_sumcol
+        position_index = ft.index.append(st.index).unique()
+        position_list = []
+        for position in TRPOSITIONLIST:
+            if position in position_index:
+                position_list.append(position)
+        position_sum = ft.reindex(index=position_list).add(
+            st.reindex(index=position_list), fill_value=0).round(1)
+
+        player_data = player_data.set_index(
+            ['Position', player_data.index]).reindex(index=position_list, level=0)
+        player_data = player_data.round(1)
+
         graph_setting = [MATCHGRAPHTYPE[gt] for gt in gtype]
 
-        return day_type, position_data, player_data, graph_setting
+        return day_type, position_data, position_avg, position_sum, player_data, graph_setting
 
-    def getBarData(self, position_data, player_data, contentDict):
+    def getBarData(self, position_data, position_avg, position_sum, player_data, contentDict):
         bar_type = contentDict['wannaType']
         content_list = contentDict['needData']
         bar_dict = {}
         for (name, content) in content_list:
             if name == 'Position':
                 bar_dict[content] = position_data[content]
+            elif name == 'Position Average':
+                bar_dict[content] = position_avg[content]
+            elif name == 'Position Sum':
+                bar_dict[content] = position_sum[content]
             else:
                 bar_dict[content] = player_data[content]
 
         return bar_type, bar_dict
 
-    def getLineData(self, position_data, player_data, contentDict):
+    def getLineData(self, position_data, position_avg, position_sum, player_data, contentDict):
         line_type = contentDict['wannaType']
         content_list = contentDict['needData']
         line_dict = {}
         for (name, content) in content_list:
             if name == 'Position':
                 line_dict[content] = position_data[content]
+            elif name == 'Position Average':
+                line_dict[content] = position_avg[content]
+            elif name == 'Position Sum':
+                line_dict[content] = position_sum[content]
             else:
                 line_dict[content] = player_data[content]
 
@@ -469,16 +514,20 @@ class PhysicoMatchGraph(PhysicoMatch):
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
 
-        day_type, position_data, player_data, graph_setting = self.settingData(
+        day_type, position_data, position_avg, position_sum, player_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, gtype)
         bar_type, bar_data = self.getBarData(
-            position_data, player_data, graph_setting[0]['Bar'])
+            position_data, position_avg, position_sum, player_data, graph_setting[0]['Bar'])
         line_type, line_data = self.getLineData(
-            position_data, player_data, graph_setting[0]['Line'])
+            position_data, position_avg, position_sum, player_data, graph_setting[0]['Line'])
 
         # basic information
         if bar_type[0] == 'Position':
             xlabel = position_data.index
+        elif bar_type[0] == 'Position Average':
+            xlabel = position_avg.index
+        elif bar_type[0] == 'Position Sum':
+            xlabel = position_sum.index
         else:
             xlabel = player_data.index
 
@@ -498,7 +547,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             fig.tight_layout()
             title = "{}__{}_{} graph".format(matchDate, matchInfo, gtype[0])
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG[gtype[0]], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Match Day Graph'], config.IMAGE_MATCHDAY_CONFIG[gtype[0]], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -516,7 +565,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             fig_size_y = FIGSIZEY
 
         # data setting
-        day_type, position_data, player_data, graph_setting = self.settingData(
+        day_type, position_data, position_avg, position_sum, player_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, gtype)
 
         fig_length = len(graph_setting)
@@ -526,13 +575,17 @@ class PhysicoMatchGraph(PhysicoMatch):
 
         for gi, gt in enumerate(gtype):
             bar_type, bar_data = self.getBarData(
-                position_data, player_data, graph_setting[gi]['Bar'])
+                position_data, position_avg, position_sum, player_data, graph_setting[gi]['Bar'])
             line_type, line_data = self.getLineData(
-                position_data, player_data, graph_setting[gi]['Line'])
+                position_data, position_avg, position_sum, player_data, graph_setting[gi]['Line'])
 
             # basic information
             if bar_type[0] == 'Position':
                 xlabel = position_data.index
+            elif bar_type[0] == 'Position Average':
+                xlabel = position_avg.index
+            elif bar_type[0] == 'Position Sum':
+                xlabel = position_sum.index
             else:
                 xlabel = player_data.index
 
@@ -553,7 +606,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             fig.tight_layout()
             title = "{}__{}_{} graph".format(matchDate, matchInfo, 'Total')
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG['Total'], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Match Day Graph'], config.IMAGE_MATCHDAY_CONFIG['Total'], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -592,48 +645,77 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             print("fail load unit data...")
             return None
 
-    def settingData(self, matchCamp, matchDate, matchInfo, period, gtype):
-        pre_day = datetime.strptime(matchDate, '%Y%m%d') - timedelta(days=1)
-        pre_day = datetime.strftime(pre_day, '%Y%m%d')
-        print(pre_day)
+    def settingData(self, matchCamp, matchDate, matchInfo, befor_period, after_period, gtype):
+        period_col = ['Total Dist.', 'MSR', 'HSR', 'Sprint',
+                      'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']
+        # match d-1
+        # pre_day = datetime.strptime(matchDate, '%Y%m%d') - timedelta(days=1)
+        # pre_day = datetime.strftime(pre_day, '%Y%m%d')
+        # print(pre_day)
 
-        period = period + 1
+        # fixed range
+        befor_day = datetime.strptime(
+            matchDate, '%Y%m%d') - timedelta(days=befor_period)
+        befor_day = int(datetime.strftime(befor_day, '%Y%m%d'))
+        after_day = datetime.strptime(
+            matchDate, '%Y%m%d') + timedelta(days=after_period)
+        after_day = int(datetime.strftime(after_day, '%Y%m%d'))
 
-        matchData = super().matchTeamData(matchCamp, matchDate, matchInfo)
+        # load match day data
+        matchData, _, _ = super().matchTeamData(matchCamp, matchDate, matchInfo)
 
         day_type, position_data, player_data = matchData['type'], matchData['position'], matchData['day']
 
+        # match team data
         match_df = position_data.loc['Total Avg.', :]
-        player_data = player_data[player_data['Position'] != 'R']
+        match_data = match_df[period_col]
+        # on-field player data
+        player_data = player_data[(player_data['Position'] != 'R') & (
+            player_data['Position'] != 'GK')]
+        # on-field player name
         player_name = player_data['Name'].values
 
-        player_df = pd.DataFrame()
-        for name in player_name:
-            data = self.player_set[name]
-            data = data.reset_index()
-            player_df = player_df.append(data, sort=False, ignore_index=True)
+        on_player_df = pd.DataFrame()
+        off_player_df = pd.DataFrame()
+        for name in self.player_set.keys():
+            if name in player_name:
+                data = self.player_set[name]
+                data = data.reset_index()
+                on_player_df = on_player_df.append(
+                    data, sort=False, ignore_index=True)
+            elif name == 'Team':
+                pass
+            else:
+                data = self.player_set[name]
+                data = data.reset_index()
+                off_player_df = off_player_df.append(
+                    data, sort=False, ignore_index=True)
 
-        team_data = self.player_set['Team']
-        team_data = team_data.set_index('Date')[
-            ['Total Dist.', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
-        team_data.columns = ['Team_{}'.format(
-            col) for col in team_data.columns]
-        team_data = team_data.loc[:matchDate, :]
-        team_data = team_data.rename(index={int(matchDate): 'Match Day'})
+        off_player_df = off_player_df[off_player_df['dayOn']]
+        off_player_df = off_player_df[off_player_df['Position'] != 'GK']
 
-        period_df = player_df.groupby('Date').mean()
+        on_player_df = on_player_df[on_player_df['dayOn']]
+        on_player_df = on_player_df[on_player_df['Position'] != 'GK']
 
-        period_data = period_df[['Total Dist.', 'MSR',
-                                 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
-        period_data = period_data.loc[:pre_day, :]
-        match_data = match_df[['Total Dist.', 'MSR',
-                               'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']]
-        match_data = pd.DataFrame([match_data.values], index=['Match Day'], columns=[
-                                  'Total Dist.', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load'])
-        period_data = period_data.append(match_data, sort=False)
-        period_data = pd.concat([period_data, team_data], axis=1)
-        period_data = period_data.iloc[-period:, :]
+        on_df = on_player_df.groupby('Date').mean()[period_col]
+        off_df = off_player_df.groupby('Date').mean()[period_col]
 
+        team_df = self.player_set['Team']
+        team_df = team_df.set_index('Date')[period_col]
+
+        team_df.loc[int(matchDate), :] = match_data
+        on_df.loc[int(matchDate), :] = match_data
+        # off_df.loc[int(matchDate),:] = match_data
+
+        on_df.columns = ['{}:On'.format(col) for col in on_df.columns]
+        off_df.columns = ['{}:Off'.format(col) for col in off_df.columns]
+        # team_df.columns = ['Team_{}'.format(col) for col in team_df.columns]
+
+        period_data = pd.concat([team_df, on_df, off_df], axis=1).round(1)
+
+        period_data = period_data.loc[befor_day:after_day, :]
+        period_data = period_data.rename(index={int(matchDate): 'Match Day'})
+        period_data = period_data.round(1)
         graph_setting = [MATCHPERIODGRAPHTYPE[gt] for gt in gtype]
 
         return day_type, period_data, graph_setting
@@ -656,7 +738,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
 
         return line_type, line_dict
 
-    def makeSingleGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+    def makeSingleGraph(self, matchCamp, matchDate, matchInfo, befor_period, after_period, gtype, wannasave, val):
         try:
             fig_size_x = int(self.unit_data['GRAPH SIZE']['Xsize'])
             fig_size_y = int(self.unit_data['GRAPH SIZE']['Ysize'])
@@ -665,7 +747,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             fig_size_y = FIGSIZEY
 
         day_type, period_data, graph_setting = self.settingData(
-            matchCamp, matchDate, matchInfo, period, gtype)
+            matchCamp, matchDate, matchInfo, befor_period, after_period, gtype)
         bar_type, bar_data = self.getBarData(
             period_data, graph_setting[0]['Bar'])
         line_type, line_data = self.getLineData(
@@ -690,7 +772,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             fig.tight_layout()
             title = "{}__{}_{} graph".format(matchDate, matchInfo, gtype[0])
             save_path = os.path.join(
-                self.base_path, graph_path, config.IMAGE_CONFIG[gtype[0]], title+'.png')
+                self.base_path, graph_path, config.IMAGE_CONFIG['Match Period Graph'], config.IMAGE_MATCHPERIOD_CONFIG[gtype[0]], title+'.png')
             plt.savefig(save_path, dpi=300)
             plt.close()
             return None
@@ -699,7 +781,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             fig.tight_layout()
             return fig
 
-    def makeMultiGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+    def makeMultiGraph(self, matchCamp, matchDate, matchInfo, befor_period, after_period, gtype, wannasave, val):
         try:
             fig_size_x = int(self.unit_data['GRAPH SIZE']['Xsize'])
             fig_size_y = int(self.unit_data['GRAPH SIZE']['Ysize'])
@@ -709,7 +791,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
 
         # data setting
         day_type, period_data, graph_setting = self.settingData(
-            matchCamp, matchDate, matchInfo, period, gtype)
+            matchCamp, matchDate, matchInfo, befor_period, after_period, gtype)
 
         fig_length = len(graph_setting)
         fig, ax = plt.subplots(fig_length, 1, figsize=(
@@ -751,14 +833,14 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             fig.tight_layout()
             return fig
 
-    def makeGraph(self, matchCamp, matchDate, matchInfo, period, gtype, wannasave, val):
+    def makeGraph(self, matchCamp, matchDate, matchInfo, befor_period, after_period, gtype, wannasave, val):
         gnum = len(gtype)
         if gnum == 0:
             fig = None
         elif gnum == 1:
             fig = self.makeSingleGraph(
-                matchCamp, matchDate, matchInfo, period, gtype, wannasave, val)
+                matchCamp, matchDate, matchInfo, befor_period, after_period, gtype, wannasave, val)
         else:
             fig = self.makeMultiGraph(
-                matchCamp, matchDate, matchInfo, period, gtype, wannasave, val)
+                matchCamp, matchDate, matchInfo, befor_period, after_period, gtype, wannasave, val)
         return fig

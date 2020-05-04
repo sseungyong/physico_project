@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
+from physicoModule.physico_plotset import PLAYERGRAPHTYPE, DAYGRAPHTYPE, MATCHGRAPHTYPE, MATCHPERIODGRAPHTYPE
+from physicoModule.physico_plotunit import GRAPHUNIT, HIGHESTY, LOWESTY
 
 font_list = fm.findSystemFonts(fontpaths=None, fontext='ttf')
 font_set = [(f.name, f.fname)
@@ -14,326 +16,25 @@ matplotlib.rcParams['axes.unicode_minus'] = False
 
 LINECOLOR = {0: 'ks--', 1: 'gs--', 2: 'ms--', 3: 'rs--'}
 DEFAULTBARCOLOR = {0: 'y', 1: 'b', 2: 'r', 3: 'k'}
-GRAPHUNIT = {
-    'Height': 'Height(cm)',
-    'Weight': 'Weight(kg)',
-    'RPE_1': 'RPE',
-    'RPE_2': 'RPE',
-    'RPE_3': 'RPE',
-    'TR Time': 'Time(min)',
-    'Accel Cnt.': 'Count',
-    'Decel Cnt.': 'Count',
-    'Max Speed': 'Speed(km/h)',
-    'GPS PL': 'Load',
-    'Load': 'Load',
-    'Mono': 'Mono',
-    'Strain': 'Strain',
-    'EWAM': 'EWAM',
-    'Sleep': 'Point',
-    'Muscle': 'Point',
-    'Sleep Time': 'Hours',
-    'Body Muscle': 'Weight(kg)',
-    'Body Fat': 'Percent(%)',
-    'Weight Change': 'Percent(%)',
-    'MSR %': 'Percent(%)',
-    'HSR %': 'Percent(%)',
-    'Sprint %': 'Percent(%)'
-}
-
-HIGHESTY = {
-    'Height': 200,
-    'Weight': 100,
-    'RPE': 12,
-    'RPE_1': 12,
-    'RPE_2': 12,
-    'RPE_3': 12,
-    'TR Time': 200,
-    'Total Dist.': 15000,
-    'MSR': 6000,
-    'HSR': 2500,
-    'Sprint': 1000,
-    'Accel Cnt.': 30,
-    'Decel Cnt.': 30,
-    'Max Speed': 30,
-    'GPS PL': 1000,
-    'Load': 1000,
-    'Mono': 6,
-    'Strain': 15000,
-    'EWAM': 1.2,
-    'Sleep': 6,
-    'Muscle': 6,
-    'Sleep Time': 10,
-    'Body Muscle': 50,
-    'Body Fat': 30,
-    'Weight Change': 3,
-    'MSR %': 50,
-    'HSR %': 50,
-    'Sprint %': 50,
-}
-
-LOWESTY = {
-    'Weight Change': -3
-}
-
-PLAYERGRAPHTYPE = {
-    'Distance': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Distance'),
-            'needData':  [('Player', 'Dist. per min'), ('Player', 'Sprint'), ('Player', 'HSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Distance'),
-            'needData':  [('Player', 'Total Dist.')]
-        }
-    },
-    'Load': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Load'),
-            'needData':  [('Team', 'Total Dist.'), ('Player', 'Total Dist.')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Load'),
-            'needData':  [('Player', 'GPS PL'), ('Player', 'Load')]
-        }
-    },
-    'Mono, Strain': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Mono & Strain'),
-            'needData':  [('Player', 'Strain')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Mono & Strain'),
-            'needData':  [('Player', 'Mono')]
-        }
-    },
-    'MSR': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_MSR'),
-            'needData':  [('Team', 'MSR'), ('Player', 'MSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_MSR'),
-            'needData':  []
-        }
-    },
-    'HSR': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_HSR'),
-            'needData':  [('Team', 'HSR'), ('Player', 'HSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_HSR'),
-            'needData':  []
-        }
-    },
-    'Sprint': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Sprint'),
-            'needData':  [('Team', 'Sprint'), ('Player', 'Sprint')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Sprint'),
-            'needData':  []
-        }
-    },
-    'Sleep': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep'), ('Player', 'Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep Time')]
-        }
-    },
-    'Body Index': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Body Index'),
-            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Body Index'),
-            'needData':  [('Player', 'Body Fat')]
-        }
-    },
-    'Weight Change': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Player Weight'),
-            'needData': [('Player', 'Weight Change')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'nan', 'PG_Player Weight'),
-            'needData': [('Player', 'Weight')]
-        }
-    }
-}
-
-DAYGRAPHTYPE = {
-    'Position Distance': {
-        'Bar': {
-            'wannaType': ('Position', 'group', 'DG_Position Distance'),
-            'needData': [('Position', 'MSR'), ('Position', 'HSR'), ('Position', 'Sprint')]
-        },
-        'Line': {
-            'wannaType': ('Position', 'scatter', 'DG_Position Distance'),
-            'needData': [('Position', 'Total Dist.')]
-        }
-    },
-    'Player Distance': {
-        'Bar': {
-            'wannaType': ('Player', 'stack', 'DG_Player Distance'),
-            'needData': [('Player', 'MSR %'), ('Player', 'HSR %'), ('Player', 'Sprint %')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Distance'),
-            'needData': [('Player', 'Total Dist.')]
-        }
-    },
-    'Day Mono, Strain': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Mono & Strain'),
-            'needData': [('Player', 'Strain')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Mono & Strain'),
-            'needData': [('Player', 'Mono')]
-        }
-    },
-    'Player Accel, Decel': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Accel, Decel'),
-            'needData': [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Accel, Decel'),
-            'needData': []
-        }
-    },
-    'Day Weight Change': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Weight'),
-            'needData': [('Player', 'Weight Change')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'nan', 'DG_Player Weight'),
-            'needData': [('Player', 'Weight')]
-        }
-    },
-    'Day Body Index': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Body Index'),
-            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'line', 'DG_Body Index'),
-            'needData':  [('Player', 'Body Fat')]
-        }
-    }
-}
-
-MATCHGRAPHTYPE = {
-    'Position Distance': {
-        'Bar': {
-            'wannaType': ('Position', 'group', 'DG_Position Distance'),
-            'needData': [('Position', 'MSR'), ('Position', 'HSR'), ('Position', 'Sprint')]
-        },
-        'Line': {
-            'wannaType': ('Position', 'scatter', 'DG_Position Distance'),
-            'needData': [('Position', 'Total Dist.')]
-        }
-    },
-    'Player Distance': {
-        'Bar': {
-            'wannaType': ('Player', 'stack', 'DG_Player Distance'),
-            'needData': [('Player', 'MSR %'), ('Player', 'HSR %'), ('Player', 'Sprint %')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Distance'),
-            'needData': [('Player', 'Total Dist.')]
-        }
-    },
-    'Player Total Time & Dist.': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Total Time & Dist.'),
-            'needData': [('Player', 'TR Time')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & Dist.'),
-            'needData': [('Player', 'Total Dist.')]
-        }
-    },
-    'Player Total Time & HSR': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Total Time & HSR'),
-            'needData': [('Player', 'TR Time')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & HSR'),
-            'needData': [('Player', 'HSR')]
-        }
-    },
-    'Player Total Time & Sprint': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Total Time & Sprint'),
-            'needData': [('Player', 'TR Time')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Total Time & Sprint'),
-            'needData': [('Player', 'Sprint')]
-        }
-    },
-    'Player Accel, Decel': {
-        'Bar': {
-            'wannaType': ('Player', 'group', 'DG_Player Accel, Decel'),
-            'needData': [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'scatter', 'DG_Player Accel, Decel'),
-            'needData': []
-        }
-    }
-}
-
-MATCHPERIODGRAPHTYPE = {
-    'Period Distance': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Player Distance'),
-            'needData': [('Player', 'MSR'), ('Player', 'HSR'), ('Player', 'Sprint')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'line', 'PG_Player Distance'),
-            'needData': [('Player', 'Total Dist.'), ('Player', 'Team_Total Dist.')]
-        }
-    },
-    'Period Accel, Decel': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Player Accel, Decel'),
-            'needData': [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'line', 'PG_Player Accel, Decel'),
-            'needData': [('Player', 'Team_Accel Cnt.'), ('Player', 'Team_Decel Cnt.')]
-        }
-    },
-    'Period Load': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Player Load'),
-            'needData': [('Player', 'Total Dist.')]
-        },
-        'Line': {
-            'wannaType': ('Player', 'line', 'PG_Player Load'),
-            'needData': [('Player', 'GPS PL'), ('Player', 'Load'), ('Player', 'Team_Load')]
-        }
-    },
-}
 
 TRPOSITIONLIST = ['CB', 'SB', 'FB', 'CMF',
                   'DMF', 'AMF', 'MF', 'WF', 'FW', 'Team']
 MPOSITIONLIST = ['1st Half Avg.',
                  '2nd Half Avg.', 'Total Avg.', 'Reserve Avg.']
 
+WEIGHT_ANNOTATION = ['PG_Player Weight', 'DG_Player Weight']
+MONOSTRAIN_ANNOTATION = ['PG_Mono & Strain', 'DG_Player Mono & Strain']
+BAR_ANNOTATION = ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance',
+                  'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint',
+                  'MG_Team Time Distance', 'MG_Position Average Distance', 'MG_Position Sum Distance', 'MG_Player Distance', 'MG_Player Total Time & Dist.',
+                  'MG_Player Total Time & HSR', 'MG_Player Total Time & Sprint', 'MG_Player Total Time & Dist. per min', 'MG_Player Accel, Decel',
+                  'PM_Player Distance', 'PM_Player Accel, Decel', 'PM_Player Load']
+LINE_ANNOTATION = ['PG_Load', 'PG_Body Index', 'DG_Position Distance',
+                   'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint',
+                   'MG_Team Time Distance', 'MG_Position Average Distance', 'MG_Position Sum Distance', 'MG_Player Distance', 'MG_Player Total Time & Dist.',
+                   'MG_Player Total Time & HSR', 'MG_Player Total Time & Sprint', 'MG_Player Total Time & Dist. per min', 'MG_Player Accel, Decel',
+                   'PM_Player Distance', 'PM_Player Accel, Decel', 'PM_Player Load']
 # Parameters
-
 DEFAULTtitle_font = 20
 DEFAULTxlabel_font = 15
 DEFAULTylabel_font = 15
@@ -382,7 +83,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
         bottom_base = 0
 
         for i, (key, value) in enumerate(bar_data.items()):
-            if bar_type[1] == 'group' and bar_type[2] in ['PG_Player Weight', 'DG_Player Weight']:
+            if bar_type[1] == 'group' and bar_type[2] in WEIGHT_ANNOTATION:
                 ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value > 0).map({True: 'r', False: 'g'}), align='center',
                        width=width, alpha=0.4, label=key)
                 ax.axhline(y=0, c='k', alpha=0.5, ls='--', lw=0.3)
@@ -393,13 +94,13 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                     ax.annotate("%.1f" %
                                 (point_val[k]), (left+width/2, height/2), ha='center', fontsize=anno_font)
             elif bar_type[1] == 'group':
-                if bar_type[2] in ['PG_Mono & Strain', 'DG_Player Mono & Strain']:
+                if bar_type[2] in MONOSTRAIN_ANNOTATION:
                     ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: DEFAULTBARCOLOR[i], False: 'r'}), align='center',
                            width=width, alpha=0.4, label=key)
                 else:
                     ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=DEFAULTBARCOLOR[i], align='center',
                            width=width, alpha=0.4, label=key)
-                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
+                if val and bar_type[2] in BAR_ANNOTATION:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds
                         ax.annotate("%.1f" %
@@ -408,7 +109,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                 ax.bar(xaxis, value, bottom=bottom_base,
                        color=DEFAULTBARCOLOR[i], alpha=0.4, label=key)
                 bottom_base += value
-                if val and bar_type[2] in ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance', 'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
+                if val and bar_type[2] in BAR_ANNOTATION:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds
                         ax.annotate("%.2f" % (height), (left+width /
@@ -498,7 +199,7 @@ def plotLine(ax, day_type, line_type, line_data, xlabel, wannasave, val, title, 
             else:
                 return None
 
-            if val and line_type[2] in ['PG_Load', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint']:
+            if val and line_type[2] in LINE_ANNOTATION:
                 for value, xcount, ycount in zip(value, xaxis, value):
                     ax.annotate("%.1f" % value, xy=(
                         xcount, ycount), xytext=(-7, 10), textcoords='offset points', color=LINECOLOR[j][0], fontsize=anno_font)
