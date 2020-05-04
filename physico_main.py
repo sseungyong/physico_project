@@ -80,9 +80,10 @@ class PhysicoMain(QWidget):
         self.pushButtonAllDaySave.clicked.connect(self.allDaySave)
         self.pushButtonAllPlayerSave.clicked.connect(self.allPlayerSave)
         self.pushButtonPtypeGraphSave.clicked.connect(self.playerTypeGraphSave)
-        # self.pushButtonDtypeGraphSave.clicked.connect(self.dayTypeGraphSave)
-        # self.pushButtonMtypeGraphSave.clicked.connect(self.matchTypeGraphSave)
-        # self.pushButtonMPtypeGraphSave.clicked.connect(self.matchPeriodTypeGraphSave)
+        self.pushButtonDtypeGraphSave.clicked.connect(self.dayTypeGraphSave)
+        self.pushButtonMtypeGraphSave.clicked.connect(self.matchTypeGraphSave)
+        self.pushButtonMPtypeGraphSave.clicked.connect(
+            self.matchPeriodTypeGraphSave)
 
         # for plotly graph
         # self.pushButtonTEST.clicked.connect(self.plotlyTest)
@@ -152,12 +153,16 @@ class PhysicoMain(QWidget):
             self.comboSaveFrom.addItem(day)
             self.comboSaveTo.addItem(day)
             # self.comboSaveDate.addItem(day[0])
-        for item in ['Distance', 'Load', 'Mono, Strain', 'MSR', 'HSR', 'Sprint']:
-            self.comboSavePtypeGraph.addItem(item)
-        for item in ['Position Distance', 'Player Distance', 'Mono, Strain', 'Weight Change']:
+        for item in ['Position Distance', 'Player Distance', 'Player Mono, Strain', 'Player Accel, Decel', 'Weight Change', 'Body Index']:
             self.comboSaveDtypeGraph.addItem(item)
-
+        for item in ['Time Distance', 'Position Avg Dist.', 'Position Sum Dist.', 'Player Distance', 'Time & Dist.', 'Time & HSR', 'Time & Sprint', 'Time & Dist. per min', 'Player Accel, Decel']:
+            self.comboSaveMtypeGraph.addItem(item)
+        for item in ['Team Distance', 'Team Accel, Decel', 'Team Load']:
+            self.comboSaveMPtypeGraph.addItem(item)
+        for item in ['Distance', 'Load', 'Mono, Strain', 'MSR', 'HSR', 'Sprint', 'Sleep', 'Body Index', 'Weight Change']:
+            self.comboSavePtypeGraph.addItem(item)
     # Intro
+
     def introRun(self):
         self.pManage.updateManager()
         date_list = list(self.pManage.file_set.keys())
@@ -548,40 +553,70 @@ class PhysicoMain(QWidget):
         self.showPopupComplete('Complete', 'Graph Save complete!!')
 
     # TODO
-    # def dayTypeGraphSave(self):
-    #     current_type = self.comboSaveDtypeGraph.currentText()
-    #     if self.checkVDG.isChecked():
-    #         value_on = True
-    #     else:
-    #         value_on = False
-    #     for day in self.pManage.day_set.keys():
-    #         Grapher = PhysicoDayGraph(self.pManage)
-    #         Grapher.makeSingleGraph(day, [current_type], True, value_on)
-    #     self.showPopupComplete('Complete', 'Graph Save complete!!')
+    def dayTypeGraphSave(self):
+        current_key = self.comboSaveDtypeGraph.currentText()
+        if self.checkVDG.isChecked():
+            value_on = True
+        else:
+            value_on = False
 
-    # def matchTypeGraphSave(self):
-    #     current_type = self.comboSaveMtypeGraph.currentText()
-    #     if self.checkVDG.isChecked():
-    #         value_on = True
-    #     else:
-    #         value_on = False
-    #     for day in self.pManage.day_set.keys():
-    #         Grapher = PhysicoDayGraph(self.pManage)
-    #         Grapher.makeSingleGraph(day, [current_type], True, value_on)
-    #     self.showPopupComplete('Complete', 'Graph Save complete!!')
+        current_type = {'Position Distance': 'Position Distance',
+                        'Player Distance': 'Player Distance',
+                        'Player Mono, Strain': 'Day Mono, Strain',
+                        'Player Accel, Decel': 'Player Accel, Decel',
+                        'Weight Change': 'Day Weight Change',
+                        'Body Index': 'Day Body Index'}.get(current_key, 'Position Distance')
 
-    # def matchPeriodTypeGraphSave(self):
-    #     current_type = self.comboSaveMPtypeGraph.currentText()
-    #     if self.checkVDG.isChecked():
-    #         value_on = True
-    #     else:
-    #         value_on = False
-    #     for day in self.pManage.day_set.keys():
-    #         Grapher = PhysicoDayGraph(self.pManage)
-    #         Grapher.makeSingleGraph(day, [current_type], True, value_on)
-    #     self.showPopupComplete('Complete', 'Graph Save complete!!')
+        for day in self.pManage.day_set.keys():
+            Grapher = PhysicoDayGraph(self.pManage)
+            Grapher.makeSingleGraph(day, [current_type], True, value_on)
+        self.showPopupComplete('Complete', 'Graph Save complete!!')
 
-    # 3
+    def matchTypeGraphSave(self):
+        current_key = self.comboSaveMtypeGraph.currentText()
+        if self.checkVDG.isChecked():
+            value_on = True
+        else:
+            value_on = False
+
+        current_type = {'Time Distance': 'Team Time Distance',
+                        'Position Avg Dist.': 'Position Average Distance',
+                        'Position Sum Dist.': 'Position Sum Distance',
+                        'Player Distance': 'Player Distance',
+                        'Time & Dist.': 'Player Total Time & Dist.',
+                        'Time & HSR': 'Player Total Time & HSR',
+                        'Time & Sprint': 'Player Total Time & Sprint',
+                        'Time & Dist. per min': 'Player Total Time & Dist./min',
+                        'Player Accel, Decel': 'Player Accel, Decel'}.get(current_key, 'Team Time Distance')
+
+        for key in self.pManage.match_set.keys():
+            (matchCamp, matchDate, matchName) = key
+            Grapher = PhysicoMatchGraph(self.pManage)
+            Grapher.makeGraph(matchCamp, matchDate, matchName, [
+                              current_type], True, value_on)
+        self.showPopupComplete('Complete', 'Graph Save complete!!')
+
+    def matchPeriodTypeGraphSave(self):
+        current_key = self.comboSaveMPtypeGraph.currentText()
+        befor = self.spinSaveMPtypeBefor.value()
+        after = self.spinSaveMPtypeAfter.value()
+        if self.checkVDG.isChecked():
+            value_on = True
+        else:
+            value_on = False
+
+        current_type = {'Team Distance': 'Period Team Distance',
+                        'Team Accel, Decel': 'Period Team Accel, Decel',
+                        'Team Load': 'Period Team Load'}.get(current_key, 'Period Team Distance')
+
+        for key in self.pManage.match_set.keys():
+            (matchCamp, matchDate, matchName) = key
+            Grapher = PhysicoMatchPeriodGraph(self.pManage)
+            Grapher.makeGraph(matchCamp, matchDate, matchName,
+                              befor, after, [current_type], True, value_on)
+        self.showPopupComplete('Complete', 'Graph Save complete!!')
+
+    # 33
     def setLabelSave(self, content):
         self.labelSave.setText(content)
 

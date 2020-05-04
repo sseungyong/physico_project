@@ -513,7 +513,7 @@ class PhysicoMatchGraph(PhysicoMatch):
         except:
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
-
+        match_title = matchDate + '__' + matchInfo
         day_type, position_data, position_avg, position_sum, player_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, gtype)
         bar_type, bar_data = self.getBarData(
@@ -538,10 +538,10 @@ class PhysicoMatchGraph(PhysicoMatch):
 
         # draw left graph
         plotBar(ax, day_type, bar_type, bar_data,
-                xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+                xlabel, wannasave, val, match_title, self.unit_data, line_data)
         # draw right graph
         plotLine(ax_twinx, day_type, line_type,
-                 line_data, xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+                 line_data, xlabel, wannasave, val, match_title, self.unit_data, bar_data)
 
         if wannasave:
             fig.tight_layout()
@@ -564,6 +564,7 @@ class PhysicoMatchGraph(PhysicoMatch):
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
 
+        match_title = matchDate + '__' + matchInfo
         # data setting
         day_type, position_data, position_avg, position_sum, player_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, gtype)
@@ -593,10 +594,10 @@ class PhysicoMatchGraph(PhysicoMatch):
             ax_twinx = ax[gi].twinx()
 
             plotBar(ax[gi], day_type, bar_type, bar_data,
-                    xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+                    xlabel, wannasave, val, match_title, self.unit_data, line_data)
             # draw right graph
             plotLine(ax_twinx, day_type, line_type, line_data,
-                     xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+                     xlabel, wannasave, val, match_title, self.unit_data, bar_data)
 
         # graph label setting
         # plt.subplots_adjust(wspace=10.)
@@ -745,7 +746,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
         except:
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
-
+        match_title = matchDate + '__' + matchInfo
         day_type, period_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, befor_period, after_period, gtype)
         bar_type, bar_data = self.getBarData(
@@ -763,10 +764,10 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
 
         # draw left graph
         plotBar(ax, day_type, bar_type, bar_data,
-                xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+                xlabel, wannasave, val, match_title, self.unit_data, line_data)
         # draw right graph
         plotLine(ax_twinx, day_type, line_type,
-                 line_data, xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+                 line_data, xlabel, wannasave, val, match_title, self.unit_data, bar_data)
 
         if wannasave:
             fig.tight_layout()
@@ -788,7 +789,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
         except:
             fig_size_x = FIGSIZEX
             fig_size_y = FIGSIZEY
-
+        match_title = matchDate + '__' + matchInfo
         # data setting
         day_type, period_data, graph_setting = self.settingData(
             matchCamp, matchDate, matchInfo, befor_period, after_period, gtype)
@@ -811,10 +812,10 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
             ax_twinx = ax[gi].twinx()
 
             plotBar(ax[gi], day_type, bar_type, bar_data,
-                    xlabel, wannasave, val, matchDate, self.unit_data, line_data)
+                    xlabel, wannasave, val, match_title, self.unit_data, line_data)
             # draw right graph
             plotLine(ax_twinx, day_type, line_type, line_data,
-                     xlabel, wannasave, val, matchDate, self.unit_data, bar_data)
+                     xlabel, wannasave, val, match_title, self.unit_data, bar_data)
 
         # graph label setting
         # plt.subplots_adjust(wspace=10.)
