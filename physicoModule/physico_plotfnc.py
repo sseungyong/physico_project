@@ -14,8 +14,12 @@ font_name = font[0]
 matplotlib.rc('font', family=font_name)
 matplotlib.rcParams['axes.unicode_minus'] = False
 
-LINECOLOR = {0: 'ks--', 1: 'gs--', 2: 'ms--', 3: 'rs--'}
-DEFAULTBARCOLOR = {0: 'y', 1: 'b', 2: 'r', 3: 'k'}
+DEFAULTBARCOLOR = {'0': 'y', '1': 'b', '2': 'r', '3': 'k'}
+DEFAULTLINECOLOR = {'0': 'k', '1': 'g', '2': 'm', '3': 'r'}
+DEFAULTMARKER = 's'
+DEFAULTLINESTYLE = '--'
+DEFAULTSCATTERSIZE = 50
+DEFAULTBARALPHA = 0.4
 
 TRPOSITIONLIST = ['CB', 'SB', 'FB', 'CMF',
                   'DMF', 'AMF', 'MF', 'WF', 'FW', 'Team']
@@ -42,7 +46,7 @@ DEFAULTytick_font = 8
 DEFAULTanno_font = 10
 
 
-def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, unit_data, temp_data=None):
+def setUnitData(unit_data, wannasave):
     if unit_data:
         if 'HIGHESTY' in unit_data.sections():
             highest_unit = unit_data['HIGHESTY']
@@ -66,6 +70,24 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
             ylabel_font = DEFAULTylabel_font
             ytick_font = DEFAULTytick_font
             anno_font = DEFAULTanno_font
+        if 'BAR COLOR' in unit_data.sections():
+            bar_color = unit_data['BAR COLOR']
+        else:
+            bar_color = DEFAULTBARCOLOR
+        if 'LINE COLOR'in unit_data.sections():
+            line_color = unit_data['LINE COLOR']
+        else:
+            line_color = DEFAULTLINECOLOR
+        if 'GRAPH OPTION' in unit_data.sections():
+            marker = unit_data['GRAPH OPTION']['marker']
+            line_style = unit_data['GRAPH OPTION']['line style']
+            scatter_size = int(unit_data['GRAPH OPTION']['scatter size'])
+            bar_alpha = float(unit_data['GRAPH OPTION']['bar alpha'])
+        else:
+            marker = DEFAULTMARKER
+            line_style = DEFAULTLINESTYLE
+            scatter_size = DEFAULTSCATTERSIZE
+            bar_alpha = DEFAULTBARALPHA
     else:
         highest_unit = HIGHESTY
         title_font = DEFAULTtitle_font
@@ -73,6 +95,19 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
         ylabel_font = DEFAULTylabel_font
         ytick_font = DEFAULTytick_font
         anno_font = DEFAULTanno_font
+        bar_color = DEFAULTBARCOLOR
+        line_color = DEFAULTLINECOLOR
+        marker = DEFAULTMARKER
+        line_style = DEFAULTLINESTYLE
+        scatter_size = DEFAULTSCATTERSIZE
+        bar_alpha = DEFAULTBARALPHA
+
+    return highest_unit, title_font, xlabel_font, ylabel_font, ytick_font, anno_font, bar_color, line_color, marker, line_style, scatter_size, bar_alpha
+
+
+def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, unit_data, temp_data=None):
+    highest_unit, title_font, xlabel_font, ylabel_font, ytick_font, anno_font, bar_color, line_color, marker, line_style, scatter_size, bar_alpha = setUnitData(
+        unit_data, wannasave)
 
     try:
         xaxis = np.arange(len(xlabel))
@@ -85,7 +120,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
         for i, (key, value) in enumerate(bar_data.items()):
             if bar_type[1] == 'group' and bar_type[2] in WEIGHT_ANNOTATION:
                 ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value > 0).map({True: 'r', False: 'g'}), align='center',
-                       width=width, alpha=0.4, label=key)
+                       width=width, alpha=bar_alpha, label=key)
                 ax.axhline(y=0, c='k', alpha=0.5, ls='--', lw=0.3)
                 point_val = list(temp_data.values())[i]
                 point_val = point_val.values
@@ -95,11 +130,11 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                                 (point_val[k]), (left+width/2, height/2), ha='center', fontsize=anno_font)
             elif bar_type[1] == 'group':
                 if bar_type[2] in MONOSTRAIN_ANNOTATION:
-                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: DEFAULTBARCOLOR[i], False: 'r'}), align='center',
-                           width=width, alpha=0.4, label=key)
+                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: bar_color[str(i)], False: 'r'}), align='center',
+                           width=width, alpha=bar_alpha, label=key)
                 else:
-                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=DEFAULTBARCOLOR[i], align='center',
-                           width=width, alpha=0.4, label=key)
+                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=bar_color[str(i)], align='center',
+                           width=width, alpha=bar_alpha, label=key)
                 if val and bar_type[2] in BAR_ANNOTATION:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds
@@ -107,7 +142,7 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                                     (height), (left+width/2, height/2), ha='center', fontsize=anno_font)
             elif bar_type[1] == 'stack':
                 ax.bar(xaxis, value, bottom=bottom_base,
-                       color=DEFAULTBARCOLOR[i], alpha=0.4, label=key)
+                       color=bar_color[str(i)], alpha=bar_alpha, label=key)
                 bottom_base += value
                 if val and bar_type[2] in BAR_ANNOTATION:
                     for p in ax.patches:
@@ -146,36 +181,8 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
 
 
 def plotLine(ax, day_type, line_type, line_data, xlabel, wannasave, val, title, unit_data, temp_data=None):
-    if unit_data:
-        if 'HIGHESTY' in unit_data.sections():
-            highest_unit = unit_data['HIGHESTY']
-        else:
-            highest_unit = HIGHESTY
-        if wannasave and 'SAVE FONT' in unit_data.sections():
-            title_font = unit_data['SAVE FONT']['Title Font']
-            xlabel_font = unit_data['SAVE FONT']['Xlabel Font']
-            ylabel_font = unit_data['SAVE FONT']['Ylabel Font']
-            ytick_font = unit_data['SAVE FONT']['Ytick Font']
-            anno_font = unit_data['SAVE FONT']['Anno Font']
-        elif 'SCREEN FONT' in unit_data.sections():
-            title_font = unit_data['SCREEN FONT']['Title Font']
-            xlabel_font = unit_data['SCREEN FONT']['Xlabel Font']
-            ylabel_font = unit_data['SCREEN FONT']['Ylabel Font']
-            ytick_font = unit_data['SCREEN FONT']['Ytick Font']
-            anno_font = unit_data['SCREEN FONT']['Anno Font']
-        else:
-            title_font = DEFAULTtitle_font
-            xlabel_font = DEFAULTxlabel_font
-            ylabel_font = DEFAULTylabel_font
-            ytick_font = DEFAULTytick_font
-            anno_font = DEFAULTanno_font
-    else:
-        highest_unit = HIGHESTY
-        title_font = DEFAULTtitle_font
-        xlabel_font = DEFAULTxlabel_font
-        ylabel_font = DEFAULTylabel_font
-        ytick_font = DEFAULTytick_font
-        anno_font = DEFAULTanno_font
+    highest_unit, title_font, xlabel_font, ylabel_font, ytick_font, anno_font, bar_color, line_color, marker, line_style, scatter_size, bar_alpha = setUnitData(
+        unit_data, wannasave)
 
     if line_data:
         xaxis = np.arange(len(xlabel))
@@ -193,16 +200,18 @@ def plotLine(ax, day_type, line_type, line_data, xlabel, wannasave, val, title, 
                         'mean'], c='r', alpha=1, ls='--', lw=1, label="{} average".format(key))
 
             if line_type[1] == 'scatter':
-                ax.scatter(xaxis, value, c='k', marker='o', label=key, s=50)
+                ax.scatter(xaxis, value, c=line_color[str(j)], marker='o',
+                           label=key, s=scatter_size)
             elif line_type[1] == 'line':
-                ax.plot(xaxis, value, LINECOLOR[j], label=key)
+                ax.plot(
+                    xaxis, value, c=line_color[str(j)], marker=marker, ls=line_style, label=key)
             else:
                 return None
 
             if val and line_type[2] in LINE_ANNOTATION:
                 for value, xcount, ycount in zip(value, xaxis, value):
                     ax.annotate("%.1f" % value, xy=(
-                        xcount, ycount), xytext=(-7, 10), textcoords='offset points', color=LINECOLOR[j][0], fontsize=anno_font)
+                        xcount, ycount), xytext=(-7, 10), textcoords='offset points', color=line_color[str(j)][0], fontsize=anno_font)
             higest_line_unit.append(
                 int(highest_unit.get(key.split(':')[0], 1000)))
             lowest_line_unit.append(LOWESTY.get(key.split(':')[0], 0))

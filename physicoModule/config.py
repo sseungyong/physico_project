@@ -61,7 +61,7 @@ IMAGE_MATCHDAY_CONFIG = {
     'Player Total Time & Dist.': '#0004_Player Time & Dist.',
     'Player Total Time & HSR': '#0005_Player Time & HSR',
     'Player Total Time & Sprint': '#0006_Player Time & Sprint',
-    'Player Total Time & Dist./min': '#0007_Player Time & Dist. per min',
+    'Player Total Time & Dist. per min': '#0007_Player Time & Dist. per min',
     'Player Accel, Decel': '#0008_Player Accel, Decel',
     'Total': '#0009_Total'
 }

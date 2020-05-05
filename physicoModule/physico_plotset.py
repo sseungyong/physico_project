@@ -1,99 +1,6 @@
 import os
 import sys
 
-PLAYERGRAPHTYPE = {
-    'Distance': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Distance'),
-            'needData':  [('Player', 'Dist. per min'), ('Player', 'Sprint'), ('Player', 'HSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Distance'),
-            'needData':  [('Player', 'Total Dist.')]
-        }
-    },
-    'Load': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Load'),
-            'needData':  [('Team', 'Total Dist.'), ('Player', 'Total Dist.')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Load'),
-            'needData':  [('Player', 'GPS PL'), ('Player', 'Load')]
-        }
-    },
-    'Mono, Strain': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Mono & Strain'),
-            'needData':  [('Player', 'Strain')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Mono & Strain'),
-            'needData':  [('Player', 'Mono')]
-        }
-    },
-    'MSR': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_MSR'),
-            'needData':  [('Team', 'MSR'), ('Player', 'MSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_MSR'),
-            'needData':  []
-        }
-    },
-    'HSR': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_HSR'),
-            'needData':  [('Team', 'HSR'), ('Player', 'HSR')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_HSR'),
-            'needData':  []
-        }
-    },
-    'Sprint': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Sprint'),
-            'needData':  [('Team', 'Sprint'), ('Player', 'Sprint')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Sprint'),
-            'needData':  []
-        }
-    },
-    'Sleep': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep'), ('Player', 'Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep Time')]
-        }
-    },
-    'Body Index': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Body Index'),
-            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Body Index'),
-            'needData':  [('Player', 'Body Fat')]
-        }
-    },
-    'Weight Change': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Player Weight'),
-            'needData': [('Player', 'Weight Change')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'nan', 'PG_Player Weight'),
-            'needData': [('Player', 'Weight')]
-        }
-    }
-}
-
 DAYGRAPHTYPE = {
     'Position Distance': {
         'Bar': {
@@ -228,7 +135,7 @@ MATCHGRAPHTYPE = {
             'needData': [('Player', 'Sprint')]
         }
     },
-    'Player Total Time & Dist./min': {
+    'Player Total Time & Dist. per min': {
         'Bar': {
             'wannaType': ('Player', 'group', 'MG_Player Total Time & Dist. per min'),
             'needData': [('Player', 'TR Time')]
@@ -312,4 +219,97 @@ MATCHPERIODGRAPHTYPE = {
             'needData': [('Player', 'Load:On'), ('Player', 'Load:Off')]
         }
     },
+}
+
+PLAYERGRAPHTYPE = {
+    'Distance': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Distance'),
+            'needData':  [('Player', 'Dist. per min'), ('Player', 'Sprint'), ('Player', 'HSR')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Distance'),
+            'needData':  [('Player', 'Total Dist.')]
+        }
+    },
+    'Load': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Load'),
+            'needData':  [('Team', 'Total Dist.'), ('Player', 'Total Dist.')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Load'),
+            'needData':  [('Player', 'GPS PL'), ('Player', 'Load')]
+        }
+    },
+    'Mono, Strain': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Mono & Strain'),
+            'needData':  [('Player', 'Strain')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Mono & Strain'),
+            'needData':  [('Player', 'Mono')]
+        }
+    },
+    'MSR': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_MSR'),
+            'needData':  [('Team', 'MSR'), ('Player', 'MSR')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_MSR'),
+            'needData':  []
+        }
+    },
+    'HSR': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_HSR'),
+            'needData':  [('Team', 'HSR'), ('Player', 'HSR')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_HSR'),
+            'needData':  []
+        }
+    },
+    'Sprint': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Sprint'),
+            'needData':  [('Team', 'Sprint'), ('Player', 'Sprint')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Sprint'),
+            'needData':  []
+        }
+    },
+    'Sleep': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Sleep'),
+            'needData':  [('Player', 'Sleep'), ('Player', 'Muscle')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Sleep'),
+            'needData':  [('Player', 'Sleep Time')]
+        }
+    },
+    'Body Index': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Body Index'),
+            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Body Index'),
+            'needData':  [('Player', 'Body Fat')]
+        }
+    },
+    'Weight Change': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Player Weight'),
+            'needData': [('Player', 'Weight Change')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'nan', 'PG_Player Weight'),
+            'needData': [('Player', 'Weight')]
+        }
+    }
 }

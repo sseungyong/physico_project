@@ -301,7 +301,7 @@ class PhysicoMain(QWidget):
         if self.checkMTimeSprint.isChecked() == True:
             graph_type.append('Player Total Time & Sprint')
         if self.checkMTimeDPM.isChecked() == True:
-            graph_type.append('Player Total Time & Dist./min')
+            graph_type.append('Player Total Time & Dist. per min')
         if self.checkMAccel.isChecked() == True:
             graph_type.append('Player Accel, Decel')
 
@@ -344,9 +344,9 @@ class PhysicoMain(QWidget):
         if self.checkMTimeSprint.isChecked() == True:
             graph_type.append('Player Total Time & Sprint')
         if self.checkMTimeDPM.isChecked() == True:
-            graph_type.append('Player Total Time & Dist./min')
+            graph_type.append('Player Total Time & Dist. per min')
         if self.checkMAccel.isChecked() == True:
-            graph_type.append('Accel, Decel')
+            graph_type.append('Player Accel, Decel')
 
         if self.checkMatchValue.isChecked():
             value_on = True
@@ -586,7 +586,7 @@ class PhysicoMain(QWidget):
                         'Time & Dist.': 'Player Total Time & Dist.',
                         'Time & HSR': 'Player Total Time & HSR',
                         'Time & Sprint': 'Player Total Time & Sprint',
-                        'Time & Dist. per min': 'Player Total Time & Dist./min',
+                        'Time & Dist. per min': 'Player Total Time & Dist. per min',
                         'Player Accel, Decel': 'Player Accel, Decel'}.get(current_key, 'Team Time Distance')
 
         for key in self.pManage.match_set.keys():
