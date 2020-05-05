@@ -10,6 +10,12 @@ def sumNanNum(a, b):
     return np.where(ma & mb, np.nan, np.nansum([a, b], axis=0))
 
 
+def meanNanNum(a, b):
+    ma = np.isnan(a)
+    mb = np.isnan(b)
+    return np.where(ma & mb, np.nan, np.nanmean([a, b], axis=0))
+
+
 def sumNanStr(a, b):
     ma = a.astype('str') == 'nan'
     mb = b.astype('str') == 'nan'

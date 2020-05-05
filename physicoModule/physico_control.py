@@ -99,6 +99,7 @@ class PhysicoMatch():
                 first_half = value[value['Type'] == 'M']
                 match_info = value.loc[:, :'RPE']
                 match_data = match.values
+                dist_per_min = match['Dist. per min'].values
                 max_speed = match['Max Speed'].values
                 columns = match.columns
             else:
@@ -107,9 +108,12 @@ class PhysicoMatch():
                 else:
                     extra_half = value[value['Type'] == 'M']
                 match_data = psf.sumNanNum(match_data, match.values)
+                dist_per_min = psf.meanNanNum(
+                    dist_per_min, match['Dist. per min'].values)
                 max_speed = psf.getMax(
                     max_speed, match['Max Speed'].values)
         match_df = pd.DataFrame(match_data, columns=columns)
+        match_df['Dist. per min'] = pd.Series(dist_per_min)
         match_df['Max Speed'] = pd.Series(max_speed)
         match_df = match_df.round(1)
         # merge info, rpe, data
