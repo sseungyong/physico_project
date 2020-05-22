@@ -13,6 +13,7 @@ GRAPHUNIT = {
     'Max Speed': 'Speed(km/h)',
     'GPS PL': 'Load',
     'Load': 'Load',
+    'Dist. Load': 'Load',
     'Mono': 'Mono',
     'Strain': 'Strain',
     'EWAM': 'EWAM',

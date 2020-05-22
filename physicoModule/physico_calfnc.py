@@ -42,7 +42,7 @@ def calculateTotal(df, type='T', name='Total'):
     len_df = len(df)
 
     SUMLIST = ['TR Time', 'Total Dist.',
-               'HSR+Sprint', 'HSR+Sprint', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load', 'Strain']
+               'HSR+Sprint', 'HSR+Sprint', 'MSR', 'HSR', 'Sprint', 'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load', 'Strain', 'Dist. Load']
     MAXLIST = ['Max Speed']
     total_list = []
     for col in df.columns:

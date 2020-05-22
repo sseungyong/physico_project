@@ -302,8 +302,8 @@ class PhysicoManage():
                 columns = data.columns
                 max_speed = data['Max Speed'].values
             else:
-                for name in unique_name:
-                    if not name in session_name:
+                for j, name in enumerate(session_name):
+                    if not name in unique_name:
                         unique_name.append(name)
                 # Type
                 merged_info['Type'] = psf.sumNanStr(
@@ -446,16 +446,20 @@ class PhysicoManage():
     def updateManager(self):
         dir_path = os.path.join(self.base_path, input_path,
                                 config.INPUT_CONFIG['workout'])
+        print("=== work out folder : ", dir_path)
         file_list = [x.split('.')[0].split('_')[0]
                      for x in os.listdir(dir_path)]
         file_list = list(set(file_list))
+        print("+++ file list in folder /n", file_list)
         file_list.sort()
         todo_list = []
         for file in file_list:
             if not file in self.file_set.keys():
                 todo_list.append(file)
+        print("*** todo list in folder /n", todo_list)
         for file_name in todo_list:
             file_str = file_name.split('_')[0]
+            print("try to do ->", file_str)
             if len(file_str) == 8:
                 date = int(file_str)
                 rData, wInfo, wData = self.readSession(file_name)
@@ -469,4 +473,5 @@ class PhysicoManage():
                 self.saveDataSet(self.day_set, 'day')
                 self.saveDataSet(self.file_set, 'file')
                 self.saveDataSet(self.match_set, 'match')
+            print('complete process', file_str)
         return todo_list

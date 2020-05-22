@@ -154,7 +154,7 @@ MATCHGRAPHTYPE = {
             'wannaType': ('Player', 'scatter', 'MG_Player Accel, Decel'),
             'needData': []
         }
-    }
+    },
 }
 
 MATCHPERIODGRAPHTYPE = {
@@ -188,6 +188,16 @@ MATCHPERIODGRAPHTYPE = {
             'needData': [('Player', 'GPS PL'), ('Player', 'Load')]
         }
     },
+    'Period Team Dist. Load': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PM_Player Load'),
+            'needData': [('Player', 'Total Dist.')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'line', 'PM_Player Load'),
+            'needData': [('Player', 'Dist. Load'), ('Player', 'Load')]
+        }
+    },
     # On / Off
     'Period OnOff Distance': {
         'Bar': {
@@ -219,6 +229,16 @@ MATCHPERIODGRAPHTYPE = {
             'needData': [('Player', 'Load:On'), ('Player', 'Load:Off')]
         }
     },
+    'Period OnOff Dist. Load': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PM_Player Load'),
+            'needData': [('Player', 'Dist. Load:On'), ('Player', 'Dist. Load:Off')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'line', 'PM_Player Load'),
+            'needData': [('Player', 'Load:On'), ('Player', 'Load:Off')]
+        }
+    },
 }
 
 PLAYERGRAPHTYPE = {
@@ -240,6 +260,16 @@ PLAYERGRAPHTYPE = {
         'Line': {
             'wannaType': ('Date', 'line', 'PG_Load'),
             'needData':  [('Player', 'GPS PL'), ('Player', 'Load')]
+        }
+    },
+    'Dist. Load': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Load'),
+            'needData':  [('Team', 'Total Dist.'), ('Player', 'Total Dist.')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Load'),
+            'needData':  [('Player', 'Dist. Load'), ('Player', 'Load')]
         }
     },
     'Mono, Strain': {
@@ -279,6 +309,16 @@ PLAYERGRAPHTYPE = {
         },
         'Line': {
             'wannaType': ('Date', 'line', 'PG_Sprint'),
+            'needData':  []
+        }
+    },
+    'Max Speed': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Max Speed'),
+            'needData':  [('Player', 'Max Speed')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Max Speed'),
             'needData':  []
         }
     },

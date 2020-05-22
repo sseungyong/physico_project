@@ -46,6 +46,7 @@ class PhysicoPlayerGraph(PhysicoControl):
         player_data = self.plyaer_gdict[name]
         player_data = player_data.set_index('Date')
         player_data = player_data.loc[fromDate: toDate, 'Camp':]
+        # player_data['Dist. Load'] = player_data['Total Dist.']/10
         player_data.loc[:, 'TR Time':] = player_data.loc[:,
                                                          'TR Time':].fillna(0)
         team_data = self.team_gdata.set_index('Date')
@@ -648,7 +649,7 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
 
     def settingData(self, matchCamp, matchDate, matchInfo, befor_period, after_period, gtype):
         period_col = ['Total Dist.', 'MSR', 'HSR', 'Sprint',
-                      'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load']
+                      'Accel Cnt.', 'Decel Cnt.', 'GPS PL', 'Load', 'Dist. Load']
         # match d-1
         # pre_day = datetime.strptime(matchDate, '%Y%m%d') - timedelta(days=1)
         # pre_day = datetime.strftime(pre_day, '%Y%m%d')
@@ -694,14 +695,17 @@ class PhysicoMatchPeriodGraph(PhysicoMatch):
 
         off_player_df = off_player_df[off_player_df['dayOn']]
         off_player_df = off_player_df[off_player_df['Position'] != 'GK']
+        off_player_df['Dist. Load'] = off_player_df['Total Dist.']/10
 
         on_player_df = on_player_df[on_player_df['dayOn']]
         on_player_df = on_player_df[on_player_df['Position'] != 'GK']
+        on_player_df['Dist. Load'] = on_player_df['Total Dist.']/10
 
         on_df = on_player_df.groupby('Date').mean()[period_col]
         off_df = off_player_df.groupby('Date').mean()[period_col]
 
         team_df = self.player_set['Team']
+        team_df['Dist. Load'] = team_df['Total Dist.']/10
         team_df = team_df.set_index('Date')[period_col]
 
         team_df.loc[int(matchDate), :] = match_data

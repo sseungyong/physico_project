@@ -70,16 +70,19 @@ IMAGE_MATCHPERIOD_CONFIG = {
     'Period Team Distance': '#0001_Team Distance',
     'Period Team Accel, Decel': '#0002_Team Accel, Decel',
     'Period Team Load': '#0003_Team Load',
+    'Period Team Dist. Load': '#0003_Team Load',
     # On / Off
     'Period OnOff Distance': '#0001_Team Distance',
     'Period OnOff Accel, Decel': '#0002_Team Accel, Decel',
     'Period OnOff Load': '#0003_Team Load',
+    'Period OnOff Dist. Load': '#0003_Team Load',
     'Total': '#0004_Total'
 }
 
 IMAGE_PLAYER_CONFIG = {
     'Distance': '#0001_Player Distance',
     'Load': '#0002_Player Load',
+    'Dist. Load': '#0002_Player Load',
     'Mono, Strain': '#0003_Player Mono, Strain',
     'MSR': '#0004_Player MSR',
     'HSR': '#0005_Player HSR',

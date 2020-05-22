@@ -8,6 +8,8 @@ import sys
 import os
 import numpy as np
 import pandas as pd
+import configparser
+import shutil
 import matplotlib.pyplot as plt
 # import plotly.offline as po
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -17,6 +19,7 @@ from pandas_model import DataFrameModel, PandasModel
 
 current_dir = os.getcwd()
 physicoUI = os.path.join(current_dir, 'uiFiles', 'physico_main.ui')
+defaultUnit = os.path.join(current_dir, 'default_unit.conf')
 
 
 class PhysicoMain(QWidget):
@@ -27,8 +30,17 @@ class PhysicoMain(QWidget):
         self.initUI(base_dir)
 
     def initUI(self, base_dir):
+        # load unit data
+        self.unitdata_path = os.path.join(base_dir, 'unit_config.conf')
+        if not os.path.isfile(self.unitdata_path):
+            shutil.copyfile(defaultUnit, self.unitdata_path)
+
+        # self.showUnit()
+        # call manager
         self.pManage = PhysicoManage(base_dir)
+        # tab function
         self.runTab()
+        # check workout date
         date_list = list(self.pManage.file_set.keys())
         if date_list:
             period = len(date_list)
@@ -372,7 +384,10 @@ class PhysicoMain(QWidget):
         if self.checkMPAccel.isChecked() == True:
             graph_type.append('Period Team Accel, Decel')
         if self.checkMPLoad.isChecked() == True:
-            graph_type.append('Period Team Load')
+            if self.radioMPDL.isChecked() == True:
+                graph_type.append('Period Team Dist. Load')
+            else:
+                graph_type.append('Period Team Load')
 
         if self.checkMPCompare.isChecked() == True:
             graph_type = [t.replace('Team', 'OnOff') for t in graph_type]
@@ -408,7 +423,10 @@ class PhysicoMain(QWidget):
         if self.checkMPAccel.isChecked() == True:
             graph_type.append('Period Team Accel, Decel')
         if self.checkMPLoad.isChecked() == True:
-            graph_type.append('Period Team Load')
+            if self.radioMPDL.isChecked() == True:
+                graph_type.append('Period Team Dist. Load')
+            else:
+                graph_type.append('Period Team Load')
 
         if self.checkMPCompare.isChecked() == True:
             graph_type = [t.replace('Team', 'OnOff') for t in graph_type]
@@ -454,7 +472,10 @@ class PhysicoMain(QWidget):
         if self.checkDistance.isChecked() == True:
             graph_type.append(self.checkDistance.text())
         if self.checkLoad.isChecked() == True:
-            graph_type.append(self.checkLoad.text())
+            if self.radioDL.isChecked() == True:
+                graph_type.append("Dist. Load")
+            else:
+                graph_type.append(self.checkLoad.text())
         if self.checkMono.isChecked() == True:
             graph_type.append(self.checkMono.text())
         if self.checkMSR.isChecked() == True:
@@ -500,7 +521,10 @@ class PhysicoMain(QWidget):
         if self.checkDistance.isChecked() == True:
             graph_type.append(self.checkDistance.text())
         if self.checkLoad.isChecked() == True:
-            graph_type.append(self.checkLoad.text())
+            if self.radioDL.isChecked() == True:
+                graph_type.append("Dist. Load")
+            else:
+                graph_type.append(self.checkLoad.text())
         if self.checkMono.isChecked() == True:
             graph_type.append(self.checkMono.text())
         if self.checkMSR.isChecked() == True:
@@ -628,6 +652,95 @@ class PhysicoMain(QWidget):
         result = msg.exec_()
         if result == QMessageBox.Ok:
             self.labelSave.clear()
+
+    # def showUnit(self):
+    #     cp = configparser.ConfigParser()
+    #     cp.read(self.unitdata_path)
+
+    def saveUnit(self):
+        config = configparser.ConfigParser()
+        config['HIGHESTY'] = {
+            'Height': 200,
+            'Weight': 100,
+            'RPE': 10,
+            'TR Time': 200,
+            'Total Dist.': 12000,
+            'MSR': 2500,
+            'HSR': 2500,
+            'Sprint': 1000,
+            'Accel Cnt.': 30,
+            'Decel Cnt.': 30,
+            'Team_Accel Cnt.': 30,
+            'Team_Decel Cnt.': 30,
+            'Max Speed': 30,
+            'GPS PL': 1000,
+            'Load': 1000,
+            'Mono': 6,
+            'Strain': 20000,
+            'EWAM': 1.2,
+            'Sleep': 6,
+            'Muscle': 6,
+            'Sleep Time': 10,
+            'Body Muscle': 50,
+            'Body Fat': 30,
+            'Weight Change': 3,
+            'MSR %': 50,
+            'HSR %': 50,
+            'Sprint %': 50,
+            'TR Time <SUM>': 500,
+            'Total Dist. <SUM>': 50000,
+            'Dist. per min <SUM>': 1000,
+            'MSR <SUM>': 8000,
+            'HSR <SUM>': 4000,
+            'Sprint <SUM>': 1000,
+            'Accel Cnt. <SUM>': 100,
+            'Decel Cnt. <SUM>': 100,
+        }
+
+        config['SAVE FONT'] = {
+            'Title Font': 25,
+            'Xlabel Font': 22,
+            'Ylabel Font': 22,
+            'Ytick Font': 10,
+            'Anno Font': 15,
+        }
+
+        config['SCREEN FONT'] = {
+            'Title Font': 15,
+            'Xlabel Font': 10,
+            'Ylabel Font': 10,
+            'Ytick Font': 7,
+            'Anno Font': 7,
+        }
+
+        config['GRAPH SIZE'] = {
+            'Xsize': 24,
+            'Ysize': 8,
+        }
+
+        config['GRAPH OPTION'] = {
+            'marker': 's',
+            'line style': '--',
+            'scatter size': 30,
+            'bar alpha': 0.6,
+        }
+
+        config['BAR COLOR'] = {
+            '0': 'y',
+            '1': 'b',
+            '2': 'r',
+            '3': 'k',
+        }
+
+        config['LINE COLOR'] = {
+            '0': 'k',
+            '1': 'g',
+            '2': 'm',
+            '3': 'r',
+        }
+        # with open(self.unitdata_path, 'w') as configfile:
+        #     config.write(configfile)
+        # configfile.close()
 
 
 if __name__ == '__main__':

@@ -28,12 +28,12 @@ MPOSITIONLIST = ['1st Half Avg.',
 
 WEIGHT_ANNOTATION = ['PG_Player Weight', 'DG_Player Weight']
 MONOSTRAIN_ANNOTATION = ['PG_Mono & Strain', 'DG_Player Mono & Strain']
-BAR_ANNOTATION = ['PG_Distance', 'PG_Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance',
+BAR_ANNOTATION = ['PG_Distance', 'PG_Load', 'PG_Dist. Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint', 'PG_Max Speed', 'PG_Body Index', 'DG_Position Distance', 'DG_Player Distance',
                   'DG_Player Mono & Strain', 'DG_Player Accel, Decel', 'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint',
                   'MG_Team Time Distance', 'MG_Position Average Distance', 'MG_Position Sum Distance', 'MG_Player Distance', 'MG_Player Total Time & Dist.',
                   'MG_Player Total Time & HSR', 'MG_Player Total Time & Sprint', 'MG_Player Total Time & Dist. per min', 'MG_Player Accel, Decel',
                   'PM_Player Distance', 'PM_Player Accel, Decel', 'PM_Player Load']
-LINE_ANNOTATION = ['PG_Load', 'PG_Body Index', 'DG_Position Distance',
+LINE_ANNOTATION = ['PG_Load', 'PG_Dist. Load', 'PG_Body Index', 'DG_Position Distance',
                    'DG_Player Total Time & Dist.', 'DG_Player Total Time & HSR', 'DG_Player Total Time & Sprint',
                    'MG_Team Time Distance', 'MG_Position Average Distance', 'MG_Position Sum Distance', 'MG_Player Distance', 'MG_Player Total Time & Dist.',
                    'MG_Player Total Time & HSR', 'MG_Player Total Time & Sprint', 'MG_Player Total Time & Dist. per min', 'MG_Player Accel, Decel',

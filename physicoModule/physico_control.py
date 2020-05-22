@@ -36,6 +36,7 @@ class PhysicoControl():
             value['HSR %'] = value['HSR']*100/value['Total Dist.']
             value['Sprint %'] = value['Sprint'] * \
                 100/value['Total Dist.']
+            value['Dist. Load'] = value['Total Dist.']/10
             value.loc[:, 'TR Time':] = value.loc[:,
                                                  'TR Time':].round(1)
 
@@ -95,6 +96,7 @@ class PhysicoMatch():
 
         for i, value in enumerate(match_session.values()):
             match = value.loc[:, 'TR Time':]
+            match['Dist. Load'] = match['Total Dist.']/10
             if i == 0:
                 first_half = value[value['Type'] == 'M']
                 match_info = value.loc[:, :'RPE']
@@ -119,6 +121,7 @@ class PhysicoMatch():
         # merge info, rpe, data
         match_df = pd.concat([match_info, match_df], axis=1)
         match_df = match_df[match_df['Type'] == 'M']
+        # match_df['Dist. Load'] = match_df['Total Dist.']/10
 
         first_total, first_len = pcf.calculateTotal(
             first_half, 'M', '1st Half')
