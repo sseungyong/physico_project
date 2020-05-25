@@ -110,7 +110,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_5"/>
+                  <widget class="QSpinBox" name="unitTotalDist"/>
                  </item>
                 </layout>
                </item>
@@ -124,7 +124,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox"/>
+                  <widget class="QSpinBox" name="unitHeight"/>
                  </item>
                 </layout>
                </item>
@@ -138,7 +138,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_2"/>
+                  <widget class="QSpinBox" name="unitWeight"/>
                  </item>
                 </layout>
                </item>
@@ -152,7 +152,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_21"/>
+                  <widget class="QSpinBox" name="unitGPSPL"/>
                  </item>
                 </layout>
                </item>
@@ -166,7 +166,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_13"/>
+                  <widget class="QSpinBox" name="unitLoad"/>
                  </item>
                 </layout>
                </item>
@@ -180,7 +180,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_20"/>
+                  <widget class="QSpinBox" name="unitMaxSpeed"/>
                  </item>
                 </layout>
                </item>
@@ -194,7 +194,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_29"/>
+                  <widget class="QSpinBox" name="unitMSRP"/>
                  </item>
                 </layout>
                </item>
@@ -208,7 +208,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_3"/>
+                  <widget class="QSpinBox" name="unitRPE"/>
                  </item>
                 </layout>
                </item>
@@ -222,14 +222,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_6"/>
+                  <widget class="QSpinBox" name="unitMSR"/>
                  </item>
                 </layout>
                </item>
                <item row="2" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_50">
                  <item>
-                  <widget class="QLabel" name="label_45">
+                  <widget class="QLabel" name="unitSprintP">
                    <property name="text">
                     <string>Sprint %</string>
                    </property>
@@ -250,14 +250,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_16"/>
+                  <widget class="QSpinBox" name="unitMono"/>
                  </item>
                 </layout>
                </item>
                <item row="3" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_48">
                  <item>
-                  <widget class="QLabel" name="label_43">
+                  <widget class="QLabel" name="unitTRTimeSum">
                    <property name="text">
                     <string>TR Time &lt;SUM&gt;</string>
                    </property>
@@ -278,14 +278,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_17"/>
+                  <widget class="QSpinBox" name="unitStrain"/>
                  </item>
                 </layout>
                </item>
                <item row="1" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_40">
                  <item>
-                  <widget class="QLabel" name="label_35">
+                  <widget class="QLabel" name="unitHSRP">
                    <property name="text">
                     <string>HSR %</string>
                    </property>
@@ -306,7 +306,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_4"/>
+                  <widget class="QSpinBox" name="unitTRTime"/>
                  </item>
                 </layout>
                </item>
@@ -320,7 +320,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_12"/>
+                  <widget class="QSpinBox" name="unitTeamDecelCnt"/>
                  </item>
                 </layout>
                </item>
@@ -334,7 +334,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_10"/>
+                  <widget class="QSpinBox" name="unitDecelCnt"/>
                  </item>
                 </layout>
                </item>
@@ -348,14 +348,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_8"/>
+                  <widget class="QSpinBox" name="unitSprint"/>
                  </item>
                 </layout>
                </item>
                <item row="10" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_42">
                  <item>
-                  <widget class="QLabel" name="label_37">
+                  <widget class="QLabel" name="unitDecelCntSum">
                    <property name="text">
                     <string>Decel Cnt. &lt;SUM&gt;</string>
                    </property>
@@ -369,7 +369,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <item row="4" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_49">
                  <item>
-                  <widget class="QLabel" name="label_44">
+                  <widget class="QLabel" name="unitTotalDistSum">
                    <property name="text">
                     <string>Total Dist. &lt;SUM&gt;</string>
                    </property>
@@ -390,7 +390,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_24"/>
+                  <widget class="QSpinBox" name="unitBodyMuscle"/>
                  </item>
                 </layout>
                </item>
@@ -404,14 +404,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_15"/>
+                  <widget class="QSpinBox" name="unitWeightChange"/>
                  </item>
                 </layout>
                </item>
                <item row="6" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_43">
                  <item>
-                  <widget class="QLabel" name="label_38">
+                  <widget class="QLabel" name="unitMSRSum">
                    <property name="text">
                     <string>MSR &lt;SUM&gt;</string>
                    </property>
@@ -432,14 +432,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_19"/>
+                  <widget class="QSpinBox" name="unitSleep"/>
                  </item>
                 </layout>
                </item>
                <item row="9" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_47">
                  <item>
-                  <widget class="QLabel" name="label_42">
+                  <widget class="QLabel" name="unitAccelCntSum">
                    <property name="text">
                     <string>Accel Cnt. &lt;SUM&gt;</string>
                    </property>
@@ -460,7 +460,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_7"/>
+                  <widget class="QSpinBox" name="unitHSR"/>
                  </item>
                 </layout>
                </item>
@@ -474,7 +474,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_11"/>
+                  <widget class="QSpinBox" name="unitTeamAccelCnt"/>
                  </item>
                 </layout>
                </item>
@@ -488,7 +488,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_22"/>
+                  <widget class="QSpinBox" name="unitEWAM"/>
                  </item>
                 </layout>
                </item>
@@ -502,7 +502,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_9"/>
+                  <widget class="QSpinBox" name="unitAccelCnt"/>
                  </item>
                 </layout>
                </item>
@@ -516,7 +516,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_14"/>
+                  <widget class="QSpinBox" name="unitMuscle"/>
                  </item>
                 </layout>
                </item>
@@ -530,14 +530,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_18"/>
+                  <widget class="QSpinBox" name="unitSleepTime"/>
                  </item>
                 </layout>
                </item>
                <item row="5" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_45">
                  <item>
-                  <widget class="QLabel" name="label_40">
+                  <widget class="QLabel" name="unitDistminSum">
                    <property name="text">
                     <string>Dist./min &lt;SUM&gt;</string>
                    </property>
@@ -558,14 +558,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_23"/>
+                  <widget class="QSpinBox" name="unitBodyFat"/>
                  </item>
                 </layout>
                </item>
                <item row="8" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_41">
                  <item>
-                  <widget class="QLabel" name="label_36">
+                  <widget class="QLabel" name="unitSprintSum">
                    <property name="text">
                     <string>Sprint &lt;SUM&gt;</string>
                    </property>
@@ -579,7 +579,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <item row="7" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_51">
                  <item>
-                  <widget class="QLabel" name="label_46">
+                  <widget class="QLabel" name="unitHSRSum">
                    <property name="text">
                     <string>HSR &lt;SUM&gt;</string>
                    </property>
@@ -599,9 +599,6 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    </property>
                   </widget>
                  </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinBox_31"/>
-                 </item>
                 </layout>
                </item>
               </layout>
@@ -615,6 +612,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  <size>
                   <width>0</width>
                   <height>185</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="title">
@@ -631,7 +634,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_38"/>
+                    <widget class="QSpinBox" name="saveTitleFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -645,7 +661,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_39"/>
+                    <widget class="QSpinBox" name="saveXlabelFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -659,7 +688,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_40"/>
+                    <widget class="QSpinBox" name="saveYlabelFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -673,7 +715,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_42"/>
+                    <widget class="QSpinBox" name="saveYtickFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -687,7 +742,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_41"/>
+                    <widget class="QSpinBox" name="saveAnnoFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -700,6 +768,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  <size>
                   <width>0</width>
                   <height>185</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="title">
@@ -716,7 +790,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_44"/>
+                    <widget class="QSpinBox" name="screenTitleFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -730,7 +817,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_47"/>
+                    <widget class="QSpinBox" name="screenXlavelFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -744,7 +844,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_43"/>
+                    <widget class="QSpinBox" name="screenYlabelFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -758,7 +871,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_45"/>
+                    <widget class="QSpinBox" name="screenYticFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -772,7 +898,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_46"/>
+                    <widget class="QSpinBox" name="screenAnnoFont">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -781,6 +920,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
               </item>
               <item>
                <widget class="QGroupBox" name="groupBox_6">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string>Graph Size</string>
                 </property>
@@ -795,7 +940,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_48"/>
+                    <widget class="QSpinBox" name="spinXsize">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -809,7 +967,20 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_49"/>
+                    <widget class="QSpinBox" name="spinYsize">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -822,21 +993,34 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <layout class="QVBoxLayout" name="verticalLayout_42">
               <item>
                <widget class="QGroupBox" name="groupBox_9">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string>Graph Option</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_47">
                  <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_66">
+                  <layout class="QHBoxLayout" name="horizontalLayout_77">
                    <item>
-                    <widget class="QLabel" name="label_61">
+                    <widget class="QLabel" name="label_72">
                      <property name="text">
                       <string>marker</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_51"/>
+                    <widget class="QLineEdit" name="markerStyle">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -850,7 +1034,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_53"/>
+                    <widget class="QLineEdit" name="lineStyle">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -887,6 +1078,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
               </item>
               <item>
                <widget class="QGroupBox" name="groupBox_10">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string>Bar Color</string>
                 </property>
@@ -901,7 +1098,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_55"/>
+                    <widget class="QLineEdit" name="barColor1">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -915,7 +1119,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_57"/>
+                    <widget class="QLineEdit" name="barColor2">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -929,7 +1140,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_54"/>
+                    <widget class="QLineEdit" name="barColor3">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -943,7 +1161,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_56"/>
+                    <widget class="QLineEdit" name="barColor4">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -952,6 +1177,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
               </item>
               <item>
                <widget class="QGroupBox" name="groupBox_11">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string>Line Color</string>
                 </property>
@@ -966,7 +1197,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_59"/>
+                    <widget class="QLineEdit" name="lineColor1">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -980,7 +1218,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_61"/>
+                    <widget class="QLineEdit" name="lineColor2">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -994,7 +1239,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_58"/>
+                    <widget class="QLineEdit" name="lineColor3">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1008,7 +1260,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_60"/>
+                    <widget class="QLineEdit" name="lineColor4">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -2283,7 +2542,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>260</height>
+                 <height>310</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -2391,6 +2650,13 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMaxSpeed">
+                  <property name="text">
+                   <string>Max Speed</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </widget>
              </item>
@@ -2399,7 +2665,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>140</height>
+                 <height>120</height>
                 </size>
                </property>
                <property name="maximumSize">

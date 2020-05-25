@@ -484,6 +484,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkHSR.text())
         if self.checkSprint.isChecked() == True:
             graph_type.append(self.checkSprint.text())
+        if self.checkMaxSpeed.isChecked() == True:
+            graph_type.append(self.checkMaxSpeed.text())
         if self.checkSleep.isChecked() == True:
             graph_type.append(self.checkSleep.text())
         if self.checkWeight.isChecked() == True:
@@ -533,6 +535,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkHSR.text())
         if self.checkSprint.isChecked() == True:
             graph_type.append(self.checkSprint.text())
+        if self.checkMaxSpeed.isChecked() == True:
+            graph_type.append(self.checkMaxSpeed.text())
         if self.checkSleep.isChecked() == True:
             graph_type.append(self.checkSleep.text())
         if self.checkWeight.isChecked() == True:

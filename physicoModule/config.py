@@ -86,10 +86,11 @@ IMAGE_PLAYER_CONFIG = {
     'Mono, Strain': '#0003_Player Mono, Strain',
     'MSR': '#0004_Player MSR',
     'HSR': '#0005_Player HSR',
-    'Sprint': '#0006_Player Sprint',
-    'Sleep': '#0007_Player Wellness',
-    'Body Index': '#0007_Player Wellness',
-    'Total': '#0008_Total'
+    'Max Speed': '#0006_Player Max Speed',
+    'Sprint': '#0007_Player Sprint',
+    'Sleep': '#0008_Player Wellness',
+    'Body Index': '#0008_Player Wellness',
+    'Total': '#0009_Total'
 }
 
 DB_CONFIG = {
