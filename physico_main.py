@@ -35,7 +35,8 @@ class PhysicoMain(QWidget):
         if not os.path.isfile(self.unitdata_path):
             shutil.copyfile(defaultUnit, self.unitdata_path)
 
-        # self.showUnit()
+        self.showUnit()
+
         # call manager
         self.pManage = PhysicoManage(base_dir)
         # tab function
@@ -52,6 +53,7 @@ class PhysicoMain(QWidget):
             pass
         # Intro
         # self.pushButtonQuit.clicked.connect(QCoreApplication.instance().quit)
+        self.pushButtonGraphSetting.clicked.connect(self.saveUnit)
         self.pushButtonQuit.clicked.connect(self.mainClose)
         self.pushButtonIntroRun.clicked.connect(self.introRun)
         # Day
@@ -657,94 +659,164 @@ class PhysicoMain(QWidget):
         if result == QMessageBox.Ok:
             self.labelSave.clear()
 
-    # def showUnit(self):
-    #     cp = configparser.ConfigParser()
-    #     cp.read(self.unitdata_path)
+    def showUnit(self):
+        cp = configparser.ConfigParser()
+        cp.read(self.unitdata_path)
+        # unit Hightest
+        self.unitHeight.setValue(int(cp['HIGHESTY']['Height']))
+        self.unitWeight.setValue(int(cp['HIGHESTY']['Weight']))
+        self.unitRPE.setValue(int(cp['HIGHESTY']['RPE']))
+        self.unitTRTime.setValue(int(cp['HIGHESTY']['TR Time']))
+        self.unitTotalDist.setValue(int(cp['HIGHESTY']['Total Dist.']))
+        self.unitMSR.setValue(int(cp['HIGHESTY']['MSR']))
+        self.unitHSR.setValue(int(cp['HIGHESTY']['HSR']))
+        self.unitSprint.setValue(int(cp['HIGHESTY']['Sprint']))
+        self.unitAccelCnt.setValue(int(cp['HIGHESTY']['Accel Cnt.']))
+        self.unitDecelCnt.setValue(int(cp['HIGHESTY']['Decel Cnt.']))
+        self.unitTeamAccelCnt.setValue(int(cp['HIGHESTY']['Team_Accel Cnt.']))
+        self.unitTeamDecelCnt.setValue(int(cp['HIGHESTY']['Team_Decel Cnt.']))
+        self.unitMaxSpeed.setValue(int(cp['HIGHESTY']['Max Speed']))
+        self.unitGPSPL.setValue(int(cp['HIGHESTY']['GPS PL']))
+        self.unitLoad.setValue(int(cp['HIGHESTY']['Load']))
+        self.unitMono.setValue(int(cp['HIGHESTY']['Mono']))
+        self.unitStrain.setValue(int(cp['HIGHESTY']['Strain']))
+        self.unitEWAM.setValue(float(cp['HIGHESTY']['EWAM']))
+        self.unitSleep.setValue(int(cp['HIGHESTY']['Sleep']))
+        self.unitMuscle.setValue(int(cp['HIGHESTY']['Muscle']))
+        self.unitSleepTime.setValue(int(cp['HIGHESTY']['Sleep Time']))
+        self.unitBodyMuscle.setValue(int(cp['HIGHESTY']['Body Muscle']))
+        self.unitBodyFat.setValue(int(cp['HIGHESTY']['Body Fat']))
+        self.unitWeightChange.setValue(int(cp['HIGHESTY']['Weight Change']))
+        self.unitMSRP.setValue(int(cp['HIGHESTY']['MSR %']))
+        self.unitHSRP.setValue(int(cp['HIGHESTY']['HSR %']))
+        self.unitSprintP.setValue(int(cp['HIGHESTY']['Sprint %']))
+        self.unitTRTimeSum.setValue(int(cp['HIGHESTY']['TR Time <SUM>']))
+        self.unitTotalDistSum.setValue(
+            int(cp['HIGHESTY']['Total Dist. <SUM>']))
+        self.unitDistminSum.setValue(
+            int(cp['HIGHESTY']['Dist. per min <SUM>']))
+        self.unitMSRSum.setValue(int(cp['HIGHESTY']['MSR <SUM>']))
+        self.unitHSRSum.setValue(int(cp['HIGHESTY']['HSR <SUM>']))
+        self.unitSprintSum.setValue(int(cp['HIGHESTY']['Sprint <SUM>']))
+        self.unitAccelCntSum.setValue(int(cp['HIGHESTY']['Accel Cnt. <SUM>']))
+        self.unitDecelCntSum.setValue(int(cp['HIGHESTY']['Decel Cnt. <SUM>']))
+        # Save Font
+        self.saveTitleFont.setValue(int(cp['SAVE FONT']['Title Font']))
+        self.saveXlabelFont.setValue(int(cp['SAVE FONT']['Xlabel Font']))
+        self.saveYlabelFont.setValue(int(cp['SAVE FONT']['Ylabel Font']))
+        self.saveYtickFont.setValue(int(cp['SAVE FONT']['Ytick Font']))
+        self.saveAnnoFont.setValue(int(cp['SAVE FONT']['Anno Font']))
+        # Screen Font
+        self.screenTitleFont.setValue(int(cp['SCREEN FONT']['Title Font']))
+        self.screenXlabelFont.setValue(int(cp['SCREEN FONT']['Xlabel Font']))
+        self.screenYlabelFont.setValue(int(cp['SCREEN FONT']['Ylabel Font']))
+        self.screenYtickFont.setValue(int(cp['SCREEN FONT']['Ytick Font']))
+        self.screenAnnoFont.setValue(int(cp['SCREEN FONT']['Anno Font']))
+        # Graph Size
+        self.graphXsize.setValue(int(cp['GRAPH SIZE']['Xsize']))
+        self.graphYsize.setValue(int(cp['GRAPH SIZE']['Ysize']))
+        # Graph Option
+        self.markerStyle.setText(cp['GRAPH OPTION']['marker'])
+        self.lineStyle.setText(cp['GRAPH OPTION']['line style'])
+        self.spinScatterSize.setValue(int(cp['GRAPH OPTION']['scatter size']))
+        self.spinBarAlpha.setValue(float(cp['GRAPH OPTION']['bar alpha']))
+        # Bar Color
+        self.barColor1.setText(cp['BAR COLOR']['0'])
+        self.barColor2.setText(cp['BAR COLOR']['1'])
+        self.barColor3.setText(cp['BAR COLOR']['2'])
+        self.barColor4.setText(cp['BAR COLOR']['3'])
+        # Line Color
+        self.lineColor1.setText(cp['LINE COLOR']['0'])
+        self.lineColor2.setText(cp['LINE COLOR']['1'])
+        self.lineColor3.setText(cp['LINE COLOR']['2'])
+        self.lineColor4.setText(cp['LINE COLOR']['3'])
 
     def saveUnit(self):
         config = configparser.ConfigParser()
         config['HIGHESTY'] = {
-            'Height': 200,
-            'Weight': 100,
-            'RPE': 10,
-            'TR Time': 200,
-            'Total Dist.': 12000,
-            'MSR': 2500,
-            'HSR': 2500,
-            'Sprint': 1000,
-            'Accel Cnt.': 30,
-            'Decel Cnt.': 30,
-            'Team_Accel Cnt.': 30,
-            'Team_Decel Cnt.': 30,
-            'Max Speed': 30,
-            'GPS PL': 1000,
-            'Load': 1000,
-            'Mono': 6,
-            'Strain': 20000,
-            'EWAM': 1.2,
-            'Sleep': 6,
-            'Muscle': 6,
-            'Sleep Time': 10,
-            'Body Muscle': 50,
-            'Body Fat': 30,
-            'Weight Change': 3,
-            'MSR %': 50,
-            'HSR %': 50,
-            'Sprint %': 50,
-            'TR Time <SUM>': 500,
-            'Total Dist. <SUM>': 50000,
-            'Dist. per min <SUM>': 1000,
-            'MSR <SUM>': 8000,
-            'HSR <SUM>': 4000,
-            'Sprint <SUM>': 1000,
-            'Accel Cnt. <SUM>': 100,
-            'Decel Cnt. <SUM>': 100,
+            'Height': self.unitHeight.value(),
+            'Weight': self.unitWeight.value(),
+            'RPE': self.unitRPE.value(),
+            'TR Time': self.unitTRTime.value(),
+            'Total Dist.': self.unitTotalDist.value(),
+            'MSR': self.unitMSR.value(),
+            'HSR': self.unitHSR.value(),
+            'Sprint': self.unitSprint.value(),
+            'Accel Cnt.': self.unitAccelCnt.value(),
+            'Decel Cnt.': self.unitDecelCnt.value(),
+            'Team_Accel Cnt.': self.unitTeamAccelCnt.value(),
+            'Team_Decel Cnt.': self.unitTeamDecelCnt.value(),
+            'Max Speed': self.unitMaxSpeed.value(),
+            'GPS PL': self.unitGPSPL.value(),
+            'Load': self.unitLoad.value(),
+            'Mono': self.unitMono.value(),
+            'Strain': self.unitStrain.value(),
+            'EWAM': self.unitEWAM.value(),
+            'Sleep': self.unitSleep.value(),
+            'Muscle': self.unitMuscle.value(),
+            'Sleep Time': self.unitSleepTime.value(),
+            'Body Muscle': self.unitBodyMuscle.value(),
+            'Body Fat': self.unitBodyFat.value(),
+            'Weight Change': self.unitWeightChange.value(),
+            'MSR %': self.unitMSRP.value(),
+            'HSR %': self.unitHSRP.value(),
+            'Sprint %': self.unitSprintP.value(),
+            'TR Time <SUM>': self.unitTRTimeSum.value(),
+            'Total Dist. <SUM>': self.unitTotalDistSum.value(),
+            'Dist. per min <SUM>': self.unitDistminSum.value(),
+            'MSR <SUM>': self.unitMSRSum.value(),
+            'HSR <SUM>': self.unitHSRSum.value(),
+            'Sprint <SUM>': self.unitSprintSum.value(),
+            'Accel Cnt. <SUM>': self.unitAccelCntSum.value(),
+            'Decel Cnt. <SUM>': self.unitDecelCntSum.value(),
         }
 
         config['SAVE FONT'] = {
-            'Title Font': 25,
-            'Xlabel Font': 22,
-            'Ylabel Font': 22,
-            'Ytick Font': 10,
-            'Anno Font': 15,
+            'Title Font': self.saveTitleFont.value(),
+            'Xlabel Font': self.saveXlabelFont.value(),
+            'Ylabel Font': self.saveYlabelFont.value(),
+            'Ytick Font': self.saveYtickFont.value(),
+            'Anno Font': self.saveAnnoFont.value(),
         }
 
         config['SCREEN FONT'] = {
-            'Title Font': 15,
-            'Xlabel Font': 10,
-            'Ylabel Font': 10,
-            'Ytick Font': 7,
-            'Anno Font': 7,
+            'Title Font': self.screenTitleFont.value(),
+            'Xlabel Font': self.screenXlabelFont.value(),
+            'Ylabel Font': self.screenYlabelFont.value(),
+            'Ytick Font': self.screenYtickFont.value(),
+            'Anno Font': self.screenAnnoFont.value(),
         }
 
         config['GRAPH SIZE'] = {
-            'Xsize': 24,
-            'Ysize': 8,
+            'Xsize': self.graphXsize.value(),
+            'Ysize': self.graphYsize.value(),
         }
 
         config['GRAPH OPTION'] = {
-            'marker': 's',
-            'line style': '--',
-            'scatter size': 30,
-            'bar alpha': 0.6,
+            'marker': self.markerStyle.text(),
+            'line style': self.lineStyle.text(),
+            'scatter size': self.spinScatterSize.value(),
+            'bar alpha': self.spinBarAlpha.value(),
         }
 
         config['BAR COLOR'] = {
-            '0': 'y',
-            '1': 'b',
-            '2': 'r',
-            '3': 'k',
+            '0': self.barColor1.text(),
+            '1': self.barColor2.text(),
+            '2': self.barColor3.text(),
+            '3': self.barColor4.text(),
         }
 
         config['LINE COLOR'] = {
-            '0': 'k',
-            '1': 'g',
-            '2': 'm',
-            '3': 'r',
+            '0': self.lineColor1.text(),
+            '1': self.lineColor2.text(),
+            '2': self.lineColor3.text(),
+            '3': self.lineColor4.text(),
         }
-        # with open(self.unitdata_path, 'w') as configfile:
-        #     config.write(configfile)
-        # configfile.close()
+        with open(self.unitdata_path, 'w') as configfile:
+            config.write(configfile)
+        configfile.close()
+
+        self.showPopupComplete('Complete', "Graph Setting Complete!")
 
 
 if __name__ == '__main__':

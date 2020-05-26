@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1141</width>
+    <width>1139</width>
     <height>833</height>
    </rect>
   </property>
@@ -110,7 +110,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitTotalDist"/>
+                  <widget class="QSpinBox" name="unitTotalDist">
+                   <property name="maximum">
+                    <number>50000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>500</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -124,7 +131,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitHeight"/>
+                  <widget class="QSpinBox" name="unitHeight">
+                   <property name="maximum">
+                    <number>300</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -138,7 +152,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitWeight"/>
+                  <widget class="QSpinBox" name="unitWeight">
+                   <property name="maximum">
+                    <number>150</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -152,7 +173,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitGPSPL"/>
+                  <widget class="QSpinBox" name="unitGPSPL">
+                   <property name="maximum">
+                    <number>2000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>50</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -166,7 +194,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitLoad"/>
+                  <widget class="QSpinBox" name="unitLoad">
+                   <property name="maximum">
+                    <number>2000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>50</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -180,7 +215,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitMaxSpeed"/>
+                  <widget class="QSpinBox" name="unitMaxSpeed">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -194,7 +236,11 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitMSRP"/>
+                  <widget class="QSpinBox" name="unitMSRP">
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -208,7 +254,11 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitRPE"/>
+                  <widget class="QSpinBox" name="unitRPE">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -222,21 +272,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitMSR"/>
+                  <widget class="QSpinBox" name="unitMSR">
+                   <property name="maximum">
+                    <number>5000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>500</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="2" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_50">
                  <item>
-                  <widget class="QLabel" name="unitSprintP">
+                  <widget class="QLabel" name="label_36">
                    <property name="text">
                     <string>Sprint %</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_35"/>
+                  <widget class="QSpinBox" name="unitSprintP">
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -250,21 +311,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitMono"/>
+                  <widget class="QSpinBox" name="unitMono">
+                   <property name="maximum">
+                    <number>20</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="3" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_48">
                  <item>
-                  <widget class="QLabel" name="unitTRTimeSum">
+                  <widget class="QLabel" name="label_37">
                    <property name="text">
                     <string>TR Time &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_33"/>
+                  <widget class="QSpinBox" name="unitTRTimeSum">
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -278,21 +350,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitStrain"/>
+                  <widget class="QSpinBox" name="unitStrain">
+                   <property name="maximum">
+                    <number>50000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>1000</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="1" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_40">
                  <item>
-                  <widget class="QLabel" name="unitHSRP">
+                  <widget class="QLabel" name="label_35">
                    <property name="text">
                     <string>HSR %</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_25"/>
+                  <widget class="QSpinBox" name="unitHSRP">
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -306,7 +389,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitTRTime"/>
+                  <widget class="QSpinBox" name="unitTRTime">
+                   <property name="maximum">
+                    <number>2000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -320,7 +410,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitTeamDecelCnt"/>
+                  <widget class="QSpinBox" name="unitTeamDecelCnt">
+                   <property name="maximum">
+                    <number>500</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -334,7 +431,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitDecelCnt"/>
+                  <widget class="QSpinBox" name="unitDecelCnt">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -348,35 +452,56 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitSprint"/>
+                  <widget class="QSpinBox" name="unitSprint">
+                   <property name="maximum">
+                    <number>5000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>500</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="10" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_42">
                  <item>
-                  <widget class="QLabel" name="unitDecelCntSum">
+                  <widget class="QLabel" name="label_46">
                    <property name="text">
                     <string>Decel Cnt. &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_27"/>
+                  <widget class="QSpinBox" name="unitDecelCntSum">
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="4" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_49">
                  <item>
-                  <widget class="QLabel" name="unitTotalDistSum">
+                  <widget class="QLabel" name="label_38">
                    <property name="text">
                     <string>Total Dist. &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_34"/>
+                  <widget class="QSpinBox" name="unitTotalDistSum">
+                   <property name="maximum">
+                    <number>100000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>100</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -390,7 +515,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitBodyMuscle"/>
+                  <widget class="QSpinBox" name="unitBodyMuscle">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -404,21 +536,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitWeightChange"/>
+                  <widget class="QSpinBox" name="unitWeightChange">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="6" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_43">
                  <item>
-                  <widget class="QLabel" name="unitMSRSum">
+                  <widget class="QLabel" name="label_42">
                    <property name="text">
                     <string>MSR &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_28"/>
+                  <widget class="QSpinBox" name="unitMSRSum">
+                   <property name="maximum">
+                    <number>10000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>100</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -432,21 +575,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitSleep"/>
+                  <widget class="QSpinBox" name="unitSleep">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="9" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_47">
                  <item>
-                  <widget class="QLabel" name="unitAccelCntSum">
+                  <widget class="QLabel" name="label_45">
                    <property name="text">
                     <string>Accel Cnt. &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_32"/>
+                  <widget class="QSpinBox" name="unitAccelCntSum">
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -460,7 +614,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitHSR"/>
+                  <widget class="QSpinBox" name="unitHSR">
+                   <property name="maximum">
+                    <number>5000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>500</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -474,7 +635,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitTeamAccelCnt"/>
+                  <widget class="QSpinBox" name="unitTeamAccelCnt">
+                   <property name="maximum">
+                    <number>500</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -488,7 +656,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitEWAM"/>
+                  <widget class="QDoubleSpinBox" name="unitEWAM">
+                   <property name="decimals">
+                    <number>1</number>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -502,7 +677,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitAccelCnt"/>
+                  <widget class="QSpinBox" name="unitAccelCnt">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -516,7 +698,11 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitMuscle"/>
+                  <widget class="QSpinBox" name="unitMuscle">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -530,21 +716,32 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitSleepTime"/>
+                  <widget class="QSpinBox" name="unitSleepTime">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="5" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_45">
                  <item>
-                  <widget class="QLabel" name="unitDistminSum">
+                  <widget class="QLabel" name="label_40">
                    <property name="text">
                     <string>Dist./min &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_30"/>
+                  <widget class="QSpinBox" name="unitDistminSum">
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -558,35 +755,56 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="unitBodyFat"/>
+                  <widget class="QSpinBox" name="unitBodyFat">
+                   <property name="maximum">
+                    <number>100</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>5</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="8" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_41">
                  <item>
-                  <widget class="QLabel" name="unitSprintSum">
+                  <widget class="QLabel" name="label_44">
                    <property name="text">
                     <string>Sprint &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_26"/>
+                  <widget class="QSpinBox" name="unitSprintSum">
+                   <property name="maximum">
+                    <number>10000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>100</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
                <item row="7" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_51">
                  <item>
-                  <widget class="QLabel" name="unitHSRSum">
+                  <widget class="QLabel" name="label_43">
                    <property name="text">
                     <string>HSR &lt;SUM&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_36"/>
+                  <widget class="QSpinBox" name="unitHSRSum">
+                   <property name="maximum">
+                    <number>10000</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>100</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -817,7 +1035,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="screenXlavelFont">
+                    <widget class="QSpinBox" name="screenXlabelFont">
                      <property name="minimumSize">
                       <size>
                        <width>70</width>
@@ -871,7 +1089,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="screenYticFont">
+                    <widget class="QSpinBox" name="screenYtickFont">
                      <property name="minimumSize">
                       <size>
                        <width>70</width>
@@ -940,7 +1158,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinXsize">
+                    <widget class="QSpinBox" name="graphXsize">
                      <property name="minimumSize">
                       <size>
                        <width>70</width>
@@ -967,7 +1185,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinYsize">
+                    <widget class="QSpinBox" name="graphYsize">
                      <property name="minimumSize">
                       <size>
                        <width>70</width>
@@ -1055,7 +1273,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_50"/>
+                    <widget class="QSpinBox" name="spinScatterSize"/>
                    </item>
                   </layout>
                  </item>
@@ -1069,7 +1287,17 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_52"/>
+                    <widget class="QDoubleSpinBox" name="spinBarAlpha">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <double>1.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1279,7 +1507,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
            </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButtonGraphSetting">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 253, 184);</string>
             </property>
@@ -1444,7 +1672,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>926</width>
+              <width>924</width>
               <height>716</height>
              </rect>
             </property>
@@ -1795,7 +2023,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>898</width>
+              <width>896</width>
               <height>716</height>
              </rect>
             </property>
@@ -2106,7 +2334,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>918</width>
+            <width>916</width>
             <height>718</height>
            </rect>
           </property>
@@ -2444,7 +2672,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>926</width>
+              <width>924</width>
               <height>716</height>
              </rect>
             </property>
