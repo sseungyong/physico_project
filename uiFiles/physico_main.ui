@@ -24,7 +24,7 @@
     <normaloff>../iconFiles/edit.png</normaloff>../iconFiles/edit.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="2" column="0">
+   <item row="3" column="0">
     <widget class="QPushButton" name="pushButtonQuit">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(229, 179, 174);
@@ -35,8 +35,14 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="2" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="minimumSize">
+      <size>
+       <width>1000</width>
+       <height>770</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;서울남산체 EB&quot;;
 </string>
@@ -1672,8 +1678,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>924</width>
-              <height>716</height>
+              <width>948</width>
+              <height>722</height>
              </rect>
             </property>
            </widget>
@@ -1784,6 +1790,34 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QCheckBox" name="checkDMSR">
+                  <property name="text">
+                   <string>MSR</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDHSR">
+                  <property name="text">
+                   <string>HSR</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDSprint">
+                  <property name="text">
+                   <string>Sprint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDAccel">
+                  <property name="text">
+                   <string>Accel, Decel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QCheckBox" name="checkDMono">
                   <property name="minimumSize">
                    <size>
@@ -1793,13 +1827,6 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   </property>
                   <property name="text">
                    <string>Mono, Strain</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="checkDAccel">
-                  <property name="text">
-                   <string>Accel, Decel</string>
                   </property>
                  </widget>
                 </item>
@@ -2023,8 +2050,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>896</width>
-              <height>716</height>
+              <width>927</width>
+              <height>722</height>
              </rect>
             </property>
            </widget>
@@ -2334,8 +2361,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>916</width>
-            <height>718</height>
+            <width>950</width>
+            <height>724</height>
            </rect>
           </property>
          </widget>
@@ -2672,8 +2699,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>924</width>
-              <height>716</height>
+              <width>948</width>
+              <height>722</height>
              </rect>
             </property>
            </widget>
@@ -2827,19 +2854,6 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkMono">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Mono, Strain</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QCheckBox" name="checkMSR">
                   <property name="minimumSize">
                    <size>
@@ -2879,9 +2893,29 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QCheckBox" name="checkAccelDecel">
+                  <property name="text">
+                   <string>Accel, Decel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QCheckBox" name="checkMaxSpeed">
                   <property name="text">
                    <string>Max Speed</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkMono">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Mono, Strain</string>
                   </property>
                  </widget>
                 </item>

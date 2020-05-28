@@ -46,8 +46,11 @@ IMAGE_CONFIG = {
 IMAGE_DAY_CONFIG = {
     'Position Distance': '#0001_Day Position Distance',
     'Player Distance': '#0002_Day Player Distance',
-    'Day Mono, Strain': '#0003_Day Mono, Strain',
-    'Player Accel, Decel': '#0004_Day Accel, Decel',
+    'Player MSR': '#0002_Day Player Distance',
+    'Player HSR': '#0002_Day Player Distance',
+    'Player Sprint': '#0002_Day Player Distance',
+    'Player Accel, Decel': '#0003_Day Accel, Decel',
+    'Day Mono, Strain': '#0004_Day Mono, Strain',
     'Day Weight Change': '#0005_Day Wellness',
     'Day Body Index': '#0005_Day Wellness',
     'Total': '#0006_Total'
@@ -83,14 +86,15 @@ IMAGE_PLAYER_CONFIG = {
     'Distance': '#0001_Player Distance',
     'Load': '#0002_Player Load',
     'Dist. Load': '#0002_Player Load',
-    'Mono, Strain': '#0003_Player Mono, Strain',
-    'MSR': '#0004_Player MSR',
-    'HSR': '#0005_Player HSR',
-    'Max Speed': '#0006_Player Max Speed',
-    'Sprint': '#0007_Player Sprint',
-    'Sleep': '#0008_Player Wellness',
-    'Body Index': '#0008_Player Wellness',
-    'Total': '#0009_Total'
+    'MSR': '#0003_Player MSR',
+    'HSR': '#0004_Player HSR',
+    'Sprint': '#0005_Player Sprint',
+    'Accel, Decel': '#0006_Player Accel, Decel',
+    'Max Speed': '#0007_Player Max Speed',
+    'Mono, Strain': '#0008_Player Mono, Strain',
+    'Sleep': '#0009_Player Wellness',
+    'Body Index': '#0009_Player Wellness',
+    'Total': '#0010_Total'
 }
 
 DB_CONFIG = {

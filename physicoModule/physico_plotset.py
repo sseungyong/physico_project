@@ -22,6 +22,36 @@ DAYGRAPHTYPE = {
             'needData': [('Player', 'Total Dist.')]
         }
     },
+    'Player MSR': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player MSR'),
+            'needData': [('Player', 'MSR')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player MSR'),
+            'needData': [('Player', 'Total Dist.')]
+        }
+    },
+    'Player HSR': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player HSR'),
+            'needData': [('Player', 'HSR')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player HSR'),
+            'needData': [('Player', 'Total Dist.')]
+        }
+    },
+    'Player Sprint': {
+        'Bar': {
+            'wannaType': ('Player', 'group', 'DG_Player Sprint'),
+            'needData': [('Player', 'Sprint')]
+        },
+        'Line': {
+            'wannaType': ('Player', 'scatter', 'DG_Player Sprint'),
+            'needData': [('Player', 'Total Dist.')]
+        }
+    },
     'Day Mono, Strain': {
         'Bar': {
             'wannaType': ('Player', 'group', 'DG_Player Mono & Strain'),
@@ -312,9 +342,19 @@ PLAYERGRAPHTYPE = {
             'needData':  []
         }
     },
+    'Accel, Decel': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Accel, Decel'),
+            'needData':  [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Max Speed'),
+            'needData':  []
+        }
+    },
     'Max Speed': {
         'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Max Speed'),
+            'wannaType': ('Date', 'group', 'PG_Accel, Decel'),
             'needData':  [('Player', 'Max Speed')]
         },
         'Line': {

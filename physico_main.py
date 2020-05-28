@@ -218,6 +218,12 @@ class PhysicoMain(QWidget):
             graph_type.append('Position Distance')
         if self.checkDDistancePlayer.isChecked() == True:
             graph_type.append('Player Distance')
+        if self.checkDMSR.isChecked() == True:
+            graph_type.append('Player MSR')
+        if self.checkDHSR.isChecked() == True:
+            graph_type.append('Player HSR')
+        if self.checkDSprint.isChecked() == True:
+            graph_type.append('Player Sprint')
         if self.checkDMono.isChecked() == True:
             graph_type.append('Day Mono, Strain')
         if self.checkDAccel.isChecked() == True:
@@ -253,6 +259,12 @@ class PhysicoMain(QWidget):
             graph_type.append('Position Distance')
         if self.checkDDistancePlayer.isChecked() == True:
             graph_type.append('Player Distance')
+        if self.checkDMSR.isChecked() == True:
+            graph_type.append('Player MSR')
+        if self.checkDHSR.isChecked() == True:
+            graph_type.append('Player HSR')
+        if self.checkDSprint.isChecked() == True:
+            graph_type.append('Player Sprint')
         if self.checkDMono.isChecked() == True:
             graph_type.append('Day Mono, Strain')
         if self.checkDAccel.isChecked() == True:
@@ -486,6 +498,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkHSR.text())
         if self.checkSprint.isChecked() == True:
             graph_type.append(self.checkSprint.text())
+        if self.checkAccelDecel.isChecked() == True:
+            graph_type.append('Accel, Decel')
         if self.checkMaxSpeed.isChecked() == True:
             graph_type.append(self.checkMaxSpeed.text())
         if self.checkSleep.isChecked() == True:
@@ -537,6 +551,8 @@ class PhysicoMain(QWidget):
             graph_type.append(self.checkHSR.text())
         if self.checkSprint.isChecked() == True:
             graph_type.append(self.checkSprint.text())
+        if self.checkAccelDecel.isChecked() == True:
+            graph_type.append('Accel, Decel')
         if self.checkMaxSpeed.isChecked() == True:
             graph_type.append(self.checkMaxSpeed.text())
         if self.checkSleep.isChecked() == True:

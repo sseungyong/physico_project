@@ -29,6 +29,8 @@ class PhysicoIntro(QMainWindow):
         qPixmapVar = qPixmapVar.scaledToWidth(250)
         self.labelIntro.setPixmap(qPixmapVar)
 
+        self.pushButtonNew.clicked.connect(self.new)
+
         self.pushButtonStart.clicked.connect(self.start)
 
         self.pushButtonQuit.clicked.connect(QCoreApplication.instance().quit)
@@ -36,17 +38,38 @@ class PhysicoIntro(QMainWindow):
         self.show()
 
     # @pyqtSlot
-    def start(self):
-        # print('click Start button!!')
-        # appp = QApplication(sys.argv)
-        # ex = PhysicoTrain()
-        # ex.show()
-        # sys.exit(appp.exec_())
+    def new(self):
         select_directory = QFileDialog.getExistingDirectory(
             self, "Select Folder", self.initial_directory)
-        pManage = PhysicoManage(select_directory)
-        pManage.updateManager()
-        self.ex1 = PhysicoMain(select_directory)
+        f = open(os.path.join(select_directory, 'physico_project.psj'), 'w')
+        f.close()
+        select_files = QFileDialog.getOpenFileNames(
+            self, "Select File", self.initial_directory, 'excel file (*.xlsx)')
+        print(select_files[0])
+        # pManage = PhysicoManage(select_directory)
+        # pManage.updateManager()
+        # self.ex1 = PhysicoMain(select_directory)
+
+    def start(self):
+        select_directory = QFileDialog.getExistingDirectory(
+            self, "Select Folder", self.initial_directory)
+        print(select_directory)
+        if os.path.isfile(os.path.join(select_directory, 'physico_project.psj')):
+            pManage = PhysicoManage(select_directory)
+            pManage.updateManager()
+            self.ex1 = PhysicoMain(select_directory)
+        else:
+            self.showPopupMsg(
+                'Directory Error.', '{} is not physico project directory.\nPlz check again!!'.format(select_directory))
+
+    def showPopupMsg(self, title, content):
+        msg = QMessageBox()
+        msg.setWindowTitle(title)
+        msg.setText(content)
+        msg.setStandardButtons(QMessageBox.Ok)
+        result = msg.exec_()
+        if result == QMessageBox.Ok:
+            pass
 
 
 if __name__ == '__main__':
