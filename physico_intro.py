@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 
 import PyQt5
 from PyQt5.QtGui import *
@@ -41,11 +42,50 @@ class PhysicoIntro(QMainWindow):
     def new(self):
         select_directory = QFileDialog.getExistingDirectory(
             self, "Select Folder", self.initial_directory)
-        f = open(os.path.join(select_directory, 'physico_project.psj'), 'w')
-        f.close()
-        select_files = QFileDialog.getOpenFileNames(
-            self, "Select File", self.initial_directory, 'excel file (*.xlsx)')
-        print(select_files[0])
+        check_file_path = os.path.join(select_directory, 'physico_project.psj')
+        if os.path.isfile(check_file_path):
+            self.showPopupMsg(
+                'Directory Error.', '{} is already physico project directory.\nPlz check again!!'.format(select_directory))
+        else:
+            f = open(check_file_path, 'w')
+            f.close()
+            input_data_directory = os.path.join(
+                select_directory, '#01_input_data')
+            workout_directory = os.path.join(
+                input_data_directory, '#001_workout')
+            wellness_directory = os.path.join(
+                input_data_directory, '#002_wellness')
+            os.makedirs(input_data_directory)
+            os.makedirs(workout_directory)
+            os.makedirs(wellness_directory)
+            select_workout_files = QFileDialog.getOpenFileNames(
+                self, "Select Workout File", self.initial_directory, 'excel file (*.xlsx)')
+            select_workout_files_name = select_workout_files[0]
+            print(type(select_workout_files_name))
+            if not select_workout_files_name:
+                print("0 files selected.")
+            else:
+                print("{} files selected".format(
+                    len(select_workout_files_name)))
+                for file_name in select_workout_files_name:
+                    workout_basename = os.path.basename(file_name)
+                    shutil.copyfile(file_name, os.path.join(
+                        workout_directory, workout_basename))
+
+            select_wellness_files = QFileDialog.getOpenFileNames(
+                self, "Select wellness File", self.initial_directory, 'excel file (*.xlsx)')
+            select_wellness_files_name = select_wellness_files[0]
+            print(type(select_wellness_files_name))
+            if not select_wellness_files_name:
+                print("0 files selected.")
+            else:
+                print("{} files selected".format(
+                    len(select_wellness_files_name)))
+                for file_name in select_wellness_files_name:
+                    wellness_basename = os.path.basename(file_name)
+                    shutil.copyfile(file_name, os.path.join(
+                        wellness_directory, wellness_basename))
+
         # pManage = PhysicoManage(select_directory)
         # pManage.updateManager()
         # self.ex1 = PhysicoMain(select_directory)
