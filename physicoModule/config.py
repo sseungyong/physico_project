@@ -52,6 +52,8 @@ IMAGE_DAY_CONFIG = {
     'Player Accel, Decel': '#0003_Day Accel, Decel',
     'Day Mono, Strain': '#0004_Day Mono, Strain',
     'Day Weight Change': '#0005_Day Wellness',
+    'Day Sleep': '#0005_Day Wellness',
+    'Day Muscle': '#0005_Day Wellness',
     'Day Body Index': '#0005_Day Wellness',
     'Total': '#0006_Total'
 }
@@ -92,7 +94,9 @@ IMAGE_PLAYER_CONFIG = {
     'Accel, Decel': '#0006_Player Accel, Decel',
     'Max Speed': '#0007_Player Max Speed',
     'Mono, Strain': '#0008_Player Mono, Strain',
+    'Weight Change': '#0009_Player Wellness',
     'Sleep': '#0009_Player Wellness',
+    'Muscle': '#0009_Player Wellness',
     'Body Index': '#0009_Player Wellness',
     'Total': '#0010_Total'
 }

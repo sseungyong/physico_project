@@ -26,6 +26,8 @@ TRPOSITIONLIST = ['CB', 'SB', 'FB', 'CMF',
 MPOSITIONLIST = ['1st Half Avg.',
                  '2nd Half Avg.', 'Total Avg.', 'Reserve Avg.']
 
+FIVELEVEL_ANNOTATION = ['PG_Sleep', 'PG_Muscle',
+                        'DG_Player Sleep', 'DG_Player Muscle']
 WEIGHT_ANNOTATION = ['PG_Player Weight', 'DG_Player Weight']
 MONOSTRAIN_ANNOTATION = ['PG_Mono & Strain', 'DG_Player Mono & Strain']
 BAR_ANNOTATION = ['PG_Distance', 'PG_Load', 'PG_Dist. Load', 'PG_Mono & Strain', 'PG_MSR', 'PG_HSR', 'PG_Sprint',
@@ -135,9 +137,17 @@ def plotBar(ax, day_type, bar_type, bar_data, xlabel, wannasave, val, title, uni
                 if bar_type[2] in MONOSTRAIN_ANNOTATION:
                     ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=(value < 6000).map({True: bar_color[str(i)], False: 'r'}), align='center',
                            width=width, alpha=bar_alpha, label=key)
+                elif bar_type[2] in FIVELEVEL_ANNOTATION:
+                    color_dict = {1: bar_color['2'], 2: bar_color['2'],
+                                  3: bar_color['0'], 4: bar_color['1'], 5: bar_color['1']}
+                    ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=color_dict[value], align='center',
+                           width=width, alpha=bar_alpha, label=key)
                 else:
                     ax.bar(xaxis+(i-(bar_num-1)/2)*width, value, color=bar_color[str(i)], align='center',
                            width=width, alpha=bar_alpha, label=key)
+                if bar_type[2] in ['DG_Player MSR', 'DG_Player HSR', 'DG_Player Sprint']:
+                    ax.axhline(y=value.describe()[
+                        'mean'], c='r', alpha=1, ls='--', lw=1, label="{} average".format(key))
                 if val and bar_type[2] in BAR_ANNOTATION:
                     for p in ax.patches:
                         left, bottom, width, height = p.get_bbox().bounds

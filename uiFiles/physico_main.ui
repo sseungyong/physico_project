@@ -113,6 +113,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Total Dist.</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -133,6 +136,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_11">
                    <property name="text">
                     <string>Height</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -155,6 +161,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Weight</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -175,6 +184,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_31">
                    <property name="text">
                     <string>GPS PL</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -197,6 +209,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Load</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -217,6 +232,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_30">
                    <property name="text">
                     <string>Max Speed</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -239,6 +257,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>MSR %</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -256,6 +277,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_13">
                    <property name="text">
                     <string>RPE</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -275,6 +299,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>MSR</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -283,7 +310,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <number>5000</number>
                    </property>
                    <property name="singleStep">
-                    <number>500</number>
+                    <number>50</number>
                    </property>
                   </widget>
                  </item>
@@ -295,6 +322,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_36">
                    <property name="text">
                     <string>Sprint %</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -314,6 +344,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Mono</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -331,6 +364,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_37">
                    <property name="text">
                     <string>TR Time &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -353,6 +389,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Strain</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -374,6 +413,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>HSR %</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -391,6 +433,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_14">
                    <property name="text">
                     <string>TR Time</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -413,6 +458,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Team_Decel Cnt.</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -433,6 +481,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_20">
                    <property name="text">
                     <string>Decel Cnt.</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -455,6 +506,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Sprint</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -463,7 +517,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <number>5000</number>
                    </property>
                    <property name="singleStep">
-                    <number>500</number>
+                    <number>50</number>
                    </property>
                   </widget>
                  </item>
@@ -475,6 +529,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_46">
                    <property name="text">
                     <string>Decel Cnt. &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -497,6 +554,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Total Dist. &lt;SUM&gt;</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -517,6 +577,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_34">
                    <property name="text">
                     <string>Body Muscle</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -539,6 +602,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Weight Change</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -556,6 +622,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_42">
                    <property name="text">
                     <string>MSR &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -578,6 +647,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Sleep</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -595,6 +667,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_45">
                    <property name="text">
                     <string>Accel Cnt. &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -617,6 +692,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>HSR</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -625,7 +703,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <number>5000</number>
                    </property>
                    <property name="singleStep">
-                    <number>500</number>
+                    <number>50</number>
                    </property>
                   </widget>
                  </item>
@@ -637,6 +715,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_21">
                    <property name="text">
                     <string>Team_Accel Cnt.</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -659,6 +740,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>EWAM</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -679,6 +763,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_19">
                    <property name="text">
                     <string>Accel Cnt.</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -701,6 +788,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Muscle</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -719,6 +809,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Sleep Time</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -736,6 +829,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_40">
                    <property name="text">
                     <string>Dist./min &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -758,6 +854,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Body Fat</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -779,6 +878,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                    <property name="text">
                     <string>Sprint &lt;SUM&gt;</string>
                    </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -799,6 +901,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                   <widget class="QLabel" name="label_43">
                    <property name="text">
                     <string>HSR &lt;SUM&gt;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -855,6 +960,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Title Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -881,6 +989,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_49">
                      <property name="text">
                       <string>Xlabel Font</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -909,6 +1020,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Ylabel Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -936,6 +1050,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Ytick Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -962,6 +1079,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_51">
                      <property name="text">
                       <string>Anno Font</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1011,6 +1131,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Title Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1037,6 +1160,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_57">
                      <property name="text">
                       <string>Xlabel Font</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1065,6 +1191,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Ylabel Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1092,6 +1221,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Ytick Font</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1118,6 +1250,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_56">
                      <property name="text">
                       <string>Anno Font</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1161,6 +1296,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>Xsize</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1187,6 +1325,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_59">
                      <property name="text">
                       <string>Ysize</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1234,6 +1375,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>marker</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1254,6 +1398,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_63">
                      <property name="text">
                       <string>line style</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1276,6 +1423,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>scatter size</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1289,6 +1439,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_62">
                      <property name="text">
                       <string>bar alpha</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1329,6 +1482,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>1st Bar</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1349,6 +1505,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_67">
                      <property name="text">
                       <string>2nd Bar</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1371,6 +1530,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>3rd Bar</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1391,6 +1553,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_66">
                      <property name="text">
                       <string>4th Bar</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1428,6 +1593,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>1st Line</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1448,6 +1616,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_71">
                      <property name="text">
                       <string>2nd Line</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1470,6 +1641,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                      <property name="text">
                       <string>3rd Line</string>
                      </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -1490,6 +1664,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     <widget class="QLabel" name="label_70">
                      <property name="text">
                       <string>4th Line</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -1724,7 +1901,7 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>250</height>
+                 <height>300</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -1834,27 +2011,35 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
               </widget>
              </item>
              <item>
-              <widget class="QGroupBox" name="groupDGraphWell">
+              <widget class="QGroupBox" name="groupBox_12">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>140</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>100</height>
+                 <height>120</height>
                 </size>
                </property>
                <property name="title">
                 <string>Wellness</string>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
+               <layout class="QVBoxLayout" name="verticalLayout_53">
                 <item>
                  <widget class="QCheckBox" name="checkDWeight">
                   <property name="text">
                    <string>Weight</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDSleep">
+                  <property name="text">
+                   <string>Sleep</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="checkDMuscle">
+                  <property name="text">
+                   <string>Muscle</string>
                   </property>
                  </widget>
                 </item>
@@ -2941,6 +3126,13 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout">
                 <item>
+                 <widget class="QCheckBox" name="checkWeight">
+                  <property name="text">
+                   <string>Weight</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QCheckBox" name="checkSleep">
                   <property name="text">
                    <string>Sleep</string>
@@ -2948,9 +3140,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkWeight">
+                 <widget class="QCheckBox" name="checkMuscle">
                   <property name="text">
-                   <string>Weight</string>
+                   <string>Muscle</string>
                   </property>
                  </widget>
                 </item>

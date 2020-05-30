@@ -82,6 +82,26 @@ DAYGRAPHTYPE = {
             'needData': [('Player', 'Weight')]
         }
     },
+    'Day Sleep': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'DG_Player Sleep'),
+            'needData':  [('Player', 'Sleep')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'DG_Player Sleep'),
+            'needData':  [('Player', 'Sleep Time')]
+        }
+    },
+    'Day Muscle': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'DG_Player Muscle'),
+            'needData':  [('Player', 'Muscle')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'DG_Player Muscle'),
+            'needData':  []
+        }
+    },
     'Day Body Index': {
         'Bar': {
             'wannaType': ('Player', 'group', 'DG_Body Index'),
@@ -348,38 +368,18 @@ PLAYERGRAPHTYPE = {
             'needData':  [('Player', 'Accel Cnt.'), ('Player', 'Decel Cnt.')]
         },
         'Line': {
-            'wannaType': ('Date', 'line', 'PG_Max Speed'),
+            'wannaType': ('Date', 'line', 'PG_Accel, Decel'),
             'needData':  []
         }
     },
     'Max Speed': {
         'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Accel, Decel'),
+            'wannaType': ('Date', 'group', 'PG_Max Speed'),
             'needData':  [('Player', 'Max Speed')]
         },
         'Line': {
             'wannaType': ('Date', 'line', 'PG_Max Speed'),
             'needData':  []
-        }
-    },
-    'Sleep': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep'), ('Player', 'Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Sleep'),
-            'needData':  [('Player', 'Sleep Time')]
-        }
-    },
-    'Body Index': {
-        'Bar': {
-            'wannaType': ('Date', 'group', 'PG_Body Index'),
-            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
-        },
-        'Line': {
-            'wannaType': ('Date', 'line', 'PG_Body Index'),
-            'needData':  [('Player', 'Body Fat')]
         }
     },
     'Weight Change': {
@@ -390,6 +390,36 @@ PLAYERGRAPHTYPE = {
         'Line': {
             'wannaType': ('Date', 'nan', 'PG_Player Weight'),
             'needData': [('Player', 'Weight')]
+        }
+    },
+    'Sleep': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Sleep'),
+            'needData':  [('Player', 'Sleep')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Sleep'),
+            'needData':  [('Player', 'Sleep Time')]
+        }
+    },
+    'Muscle': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Muscle'),
+            'needData':  [('Player', 'Muscle')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Muscle'),
+            'needData':  []
+        }
+    },
+    'Body Index': {
+        'Bar': {
+            'wannaType': ('Date', 'group', 'PG_Body Index'),
+            'needData':  [('Player', 'Weight'), ('Player', 'Body Muscle')]
+        },
+        'Line': {
+            'wannaType': ('Date', 'line', 'PG_Body Index'),
+            'needData':  [('Player', 'Body Fat')]
         }
     }
 }

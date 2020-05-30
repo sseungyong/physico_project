@@ -86,9 +86,9 @@ class PhysicoIntro(QMainWindow):
                     shutil.copyfile(file_name, os.path.join(
                         wellness_directory, wellness_basename))
 
-        # pManage = PhysicoManage(select_directory)
-        # pManage.updateManager()
-        # self.ex1 = PhysicoMain(select_directory)
+            pManage = PhysicoManage(select_directory)
+            pManage.updateManager()
+            self.ex1 = PhysicoMain(select_directory)
 
     def start(self):
         select_directory = QFileDialog.getExistingDirectory(

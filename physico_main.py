@@ -224,12 +224,16 @@ class PhysicoMain(QWidget):
             graph_type.append('Player HSR')
         if self.checkDSprint.isChecked() == True:
             graph_type.append('Player Sprint')
-        if self.checkDMono.isChecked() == True:
-            graph_type.append('Day Mono, Strain')
         if self.checkDAccel.isChecked() == True:
             graph_type.append('Player Accel, Decel')
+        if self.checkDMono.isChecked() == True:
+            graph_type.append('Day Mono, Strain')
         if self.checkDWeight.isChecked() == True:
             graph_type.append('Day Weight Change')
+        if self.checkDSleep.isChecked() == True:
+            graph_type.append('Day Sleep')
+        if self.checkDMuscle.isChecked() == True:
+            graph_type.append('Day Muscle')
         if self.checkDBI.isChecked() == True:
             graph_type.append('Day Body Index')
 
@@ -265,12 +269,16 @@ class PhysicoMain(QWidget):
             graph_type.append('Player HSR')
         if self.checkDSprint.isChecked() == True:
             graph_type.append('Player Sprint')
-        if self.checkDMono.isChecked() == True:
-            graph_type.append('Day Mono, Strain')
         if self.checkDAccel.isChecked() == True:
             graph_type.append('Player Accel, Decel')
+        if self.checkDMono.isChecked() == True:
+            graph_type.append('Day Mono, Strain')
         if self.checkDWeight.isChecked() == True:
             graph_type.append('Day Weight Change')
+        if self.checkDSleep.isChecked() == True:
+            graph_type.append('Day Sleep')
+        if self.checkDMuscle.isChecked() == True:
+            graph_type.append('Day Muscle')
         if self.checkDBI.isChecked() == True:
             graph_type.append('Day Body Index')
 
@@ -502,10 +510,12 @@ class PhysicoMain(QWidget):
             graph_type.append('Accel, Decel')
         if self.checkMaxSpeed.isChecked() == True:
             graph_type.append(self.checkMaxSpeed.text())
-        if self.checkSleep.isChecked() == True:
-            graph_type.append(self.checkSleep.text())
         if self.checkWeight.isChecked() == True:
             graph_type.append('Weight Change')
+        if self.checkSleep.isChecked() == True:
+            graph_type.append(self.checkSleep.text())
+        if self.checkMuscle.isChecked() == True:
+            graph_type.append('Muscle')
         if self.checkBI.isChecked() == True:
             graph_type.append(self.checkBI.text())
 
@@ -555,12 +565,15 @@ class PhysicoMain(QWidget):
             graph_type.append('Accel, Decel')
         if self.checkMaxSpeed.isChecked() == True:
             graph_type.append(self.checkMaxSpeed.text())
-        if self.checkSleep.isChecked() == True:
-            graph_type.append(self.checkSleep.text())
         if self.checkWeight.isChecked() == True:
             graph_type.append('Weight Change')
+        if self.checkSleep.isChecked() == True:
+            graph_type.append(self.checkSleep.text())
+        if self.checkMuscle.isChecked() == True:
+            graph_type.append('Muscle')
         if self.checkBI.isChecked() == True:
             graph_type.append(self.checkBI.text())
+
         if self.checkPlayerValue.isChecked():
             value_on = True
         else:
