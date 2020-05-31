@@ -102,6 +102,12 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                 <height>0</height>
                </size>
               </property>
+              <property name="maximumSize">
+               <size>
+                <width>1000</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="title">
                <string>Highest</string>
               </property>
@@ -1381,12 +1387,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="markerStyle">
-                     <property name="maximumSize">
-                      <size>
-                       <width>80</width>
-                       <height>16777215</height>
-                      </size>
+                    <widget class="QComboBox" name="markerStyle">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
                      </property>
                     </widget>
                    </item>
@@ -1405,12 +1408,9 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineStyle">
-                     <property name="maximumSize">
-                      <size>
-                       <width>80</width>
-                       <height>16777215</height>
-                      </size>
+                    <widget class="QComboBox" name="lineStyle">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
                      </property>
                     </widget>
                    </item>
@@ -1855,8 +1855,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>948</width>
-              <height>722</height>
+              <width>924</width>
+              <height>716</height>
              </rect>
             </property>
            </widget>
@@ -2235,8 +2235,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>927</width>
-              <height>722</height>
+              <width>896</width>
+              <height>716</height>
              </rect>
             </property>
            </widget>
@@ -2546,8 +2546,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>950</width>
-            <height>724</height>
+            <width>916</width>
+            <height>718</height>
            </rect>
           </property>
          </widget>
@@ -2884,8 +2884,8 @@ font: 10pt &quot;서울남산체 EB&quot;;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>948</width>
-              <height>722</height>
+              <width>924</width>
+              <height>716</height>
              </rect>
             </property>
            </widget>

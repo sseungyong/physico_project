@@ -745,8 +745,16 @@ class PhysicoMain(QWidget):
         self.graphXsize.setValue(int(cp['GRAPH SIZE']['Xsize']))
         self.graphYsize.setValue(int(cp['GRAPH SIZE']['Ysize']))
         # Graph Option
-        self.markerStyle.setText(cp['GRAPH OPTION']['marker'])
-        self.lineStyle.setText(cp['GRAPH OPTION']['line style'])
+        markers = ['s', 'o', 'p', '.', 'v', '^', '>', '<']
+        current_marker = cp['GRAPH OPTION']['marker']
+        markers.remove(current_marker)
+        self.markerStyle.addItem(current_marker)
+        self.markerStyle.addItems(markers)
+        lines = ['--', '-', '-.', ':']
+        current_line = cp['GRAPH OPTION']['line style']
+        lines.remove(current_line)
+        self.lineStyle.addItem(current_line)
+        self.lineStyle.addItems(lines)
         self.spinScatterSize.setValue(int(cp['GRAPH OPTION']['scatter size']))
         self.spinBarAlpha.setValue(float(cp['GRAPH OPTION']['bar alpha']))
         # Bar Color
@@ -822,8 +830,8 @@ class PhysicoMain(QWidget):
         }
 
         config['GRAPH OPTION'] = {
-            'marker': self.markerStyle.text(),
-            'line style': self.lineStyle.text(),
+            'marker': self.markerStyle.currentText(),
+            'line style': self.lineStyle.currentText(),
             'scatter size': self.spinScatterSize.value(),
             'bar alpha': self.spinBarAlpha.value(),
         }
