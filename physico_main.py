@@ -167,13 +167,13 @@ class PhysicoMain(QWidget):
             self.comboSaveFrom.addItem(day)
             self.comboSaveTo.addItem(day)
             # self.comboSaveDate.addItem(day[0])
-        for item in ['Position Distance', 'Player Distance', 'Player Mono, Strain', 'Player Accel, Decel', 'Weight Change', 'Body Index']:
+        for item in ['Position Distance', 'Player Distance', 'Player MSR', 'Player HSR', 'Player Sprint', 'Player Accel, Decel',  'Player Mono, Strain', 'Weight Change', 'Sleep', 'Muscle', 'Body Index']:
             self.comboSaveDtypeGraph.addItem(item)
         for item in ['Time Distance', 'Position Avg Dist.', 'Position Sum Dist.', 'Player Distance', 'Time & Dist.', 'Time & HSR', 'Time & Sprint', 'Time & Dist. per min', 'Player Accel, Decel']:
             self.comboSaveMtypeGraph.addItem(item)
-        for item in ['Team Distance', 'Team Accel, Decel', 'Team Load']:
+        for item in ['Team Distance', 'Team Accel, Decel', 'Team Load', 'Team Dist. Load']:
             self.comboSaveMPtypeGraph.addItem(item)
-        for item in ['Distance', 'Load', 'Mono, Strain', 'MSR', 'HSR', 'Sprint', 'Sleep', 'Body Index', 'Weight Change']:
+        for item in ['Distance', 'Load', 'Dist. Load', 'MSR', 'HSR', 'Sprint', 'Accel, Decel', 'Max Speed', 'Mono, Strain', 'Weight Change', 'Sleep', 'Muscle', 'Body Index']:
             self.comboSavePtypeGraph.addItem(item)
     # Intro
 
@@ -621,9 +621,14 @@ class PhysicoMain(QWidget):
 
         current_type = {'Position Distance': 'Position Distance',
                         'Player Distance': 'Player Distance',
-                        'Player Mono, Strain': 'Day Mono, Strain',
+                        'Player MSR': 'Player MSR',
+                        'Player HSR': 'Player HSR',
+                        'Player Sprint': 'Player Sprint',
                         'Player Accel, Decel': 'Player Accel, Decel',
+                        'Player Mono, Strain': 'Day Mono, Strain',
                         'Weight Change': 'Day Weight Change',
+                        'Sleep': 'Day Sleep',
+                        'Muscle': 'Day Muscle',
                         'Body Index': 'Day Body Index'}.get(current_key, 'Position Distance')
 
         for day in self.pManage.day_set.keys():
@@ -666,7 +671,8 @@ class PhysicoMain(QWidget):
 
         current_type = {'Team Distance': 'Period Team Distance',
                         'Team Accel, Decel': 'Period Team Accel, Decel',
-                        'Team Load': 'Period Team Load'}.get(current_key, 'Period Team Distance')
+                        'Team Load': 'Period Team Load',
+                        'Team Dist. Load': 'Period Team Dist. Load'}.get(current_key, 'Period Team Distance')
 
         for key in self.pManage.match_set.keys():
             (matchCamp, matchDate, matchName) = key
