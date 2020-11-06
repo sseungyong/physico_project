@@ -99,26 +99,7 @@ class PhysicoMain(QWidget):
         self.pushButtonMPtypeGraphSave.clicked.connect(
             self.matchPeriodTypeGraphSave)
 
-        # for plotly graph
-        # self.pushButtonTEST.clicked.connect(self.plotlyTest)
-
         self.show()
-
-    # def plotlyTest(self):
-    #     Phyly = PhysicoPlotly(self.pManage)
-    #     fig = Phyly.makeSinglePlotly('JI Soyun')
-
-    #     raw_html = '<html><head><meta charset="utf-8" />'
-    #     raw_html += '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script></head>'
-    #     raw_html += '<body>'
-    #     raw_html += po.plot(fig, include_plotlyjs=False, output_type='div')
-    #     raw_html += '</body></html>'
-
-    #     # setHtml has a 2MB size limit, need to switch to setUrl on tmp file
-    #     # for large figures.
-    #     self.webEngineView.setHtml(raw_html)
-    #     self.webEngineView.show()
-    #     # self.webEngineView.raise_()
 
     def mainClose(self):
         self.close()

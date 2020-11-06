@@ -138,8 +138,10 @@ class PhysicoManage():
                 target_list.append(file)
         file_names = []
         for file in target_list:
-            if file.split('_')[1] == 'TR':
+            if file.rsplit('_', 1)[1].lower() == 'tr.xlsx':
                 file_names.append('TR')
+            elif file.rsplit('_', 1)[1].lower() == 'm.xlsx'
+            file_names.append('M')
             else:
                 file_names.append(file.split('_')[1])
         tr_session = []
@@ -161,23 +163,21 @@ class PhysicoManage():
                     except:
                         self.session_set[file_date] = {}
                         self.session_set[file_date][file_info] = data
-            else:
+            elif file_type == 'M':
                 match_session.append(file_type)
                 data_dict = {}
                 for i, sn in enumerate(xl.sheet_names):
                     data = xl.parse(sn)
                     if i == 0:
-                        part = 'First Half'
-                    elif i == 1:
-                        part = 'Second Half'
+                        against = data['VS.'].values[0]
                     else:
-                        part = 'Extra Time'
-                    data_dict[part] = data
-                    data_dict[part]['Load'] = data_dict[part]['RPE'] * \
-                        data_dict[part]['TR Time']
+                        part = '{} Session'.format(str(i))
+                        data_dict[part] = data
+                        data_dict[part]['Load'] = data_dict[part]['RPE'] * \
+                            data_dict[part]['TR Time']
 
                     match = data.loc[:, 'TR Time':]
-                    if i == 0:
+                    if i == 1:
                         match_info = data.loc[:, :'RPE']
                         match_data = match.values
                         max_speed = match['Max Speed'].values
@@ -193,7 +193,7 @@ class PhysicoManage():
                 # merge info, rpe, data
                 match_df = pd.concat([match_info, match_df], axis=1)
 
-                match_basic_info = (camp, file_date, file_type)
+                match_basic_info = (camp, file_date, against)
                 self.match_set[match_basic_info] = data_dict
 
                 # Write match DB ####################################################################################
@@ -207,7 +207,7 @@ class PhysicoManage():
                     value['Part'] = key
                     value['Camp'] = camp
                     value['Date'] = file_date
-                    value['Against'] = file_type
+                    value['Against'] = against
                     match_dff = match_dff.append(
                         value, sort=False, ignore_index=True)
 
