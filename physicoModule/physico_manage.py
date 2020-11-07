@@ -136,20 +136,20 @@ class PhysicoManage():
         for file in file_list:
             if file.split('_')[0] == fileDate:
                 target_list.append(file)
-        file_names = []
+        file_types = {}
         for file in target_list:
-            if file.rsplit('_', 1)[1].lower() == 'tr.xlsx':
-                file_names.append('TR')
-            elif file.rsplit('_', 1)[1].lower() == 'm.xlsx'
-            file_names.append('M')
+            if file.rsplit('_', 1)[1].lower() == 'tr':
+                file_types[file] = 'TR'
+            elif file.rsplit('_', 1)[1].lower() == 'm':
+                file_types[file] = 'M'
             else:
-                file_names.append(file.split('_')[1])
+                file_types[file] = 'ETC'
         tr_session = []
         match_session = []
-        for file_name in file_names:
-            file_date, file_type = fileDate, file_name
+        for file_name in target_list:
+            file_date, file_type = fileDate, file_types[file_name]
             data_path = os.path.join(
-                workout_path, '{}_{}.xlsx'.format(file_date, file_type))
+                workout_path, '{}.xlsx'.format(file_name))
             xl = pd.ExcelFile(data_path)
             if file_type == 'TR':
                 for i, sn in enumerate(xl.sheet_names):
@@ -176,16 +176,17 @@ class PhysicoManage():
                         data_dict[part]['Load'] = data_dict[part]['RPE'] * \
                             data_dict[part]['TR Time']
 
-                    match = data.loc[:, 'TR Time':]
-                    if i == 1:
-                        match_info = data.loc[:, :'RPE']
-                        match_data = match.values
-                        max_speed = match['Max Speed'].values
-                        columns = match.columns
-                    else:
-                        match_data = psf.sumNanNum(match_data, match.values)
-                        max_speed = psf.getMax(
-                            max_speed, match['Max Speed'].values)
+                        match = data.loc[:, 'TR Time':]
+                        if i == 1:
+                            match_info = data.loc[:, :'RPE']
+                            match_data = match.values
+                            max_speed = match['Max Speed'].values
+                            columns = match.columns
+                        else:
+                            match_data = psf.sumNanNum(
+                                match_data, match.values)
+                            max_speed = psf.getMax(
+                                max_speed, match['Max Speed'].values)
 
                 match_df = pd.DataFrame(match_data, columns=columns)
                 match_df['Max Speed'] = pd.Series(max_speed)
