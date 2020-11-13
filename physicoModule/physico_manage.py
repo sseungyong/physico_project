@@ -293,13 +293,16 @@ class PhysicoManage():
             tdata = value[(value['Type'] == 'F') | (value['Type'] == 'M') | (
                 value['Type'] == 'IN') | (value['Type'] == 'G')]
             session_name = list(tdata['Name'].values)
-            data = value.loc[:, 'TR Time':]
+            data = value.loc[:, 'TR Time':'Max Speed']
             if i == 0:
                 unique_name = session_name
                 # player information
                 merged_info = value.loc[:, :'RPE']
                 # Data
                 merged_data = data.values
+                # Memo
+                merged_memo = value.loc[:, 'Injury':]
+
                 columns = data.columns
                 max_speed = data['Max Speed'].values
             else:
@@ -313,15 +316,22 @@ class PhysicoManage():
                     merged_info['Type Info.'], value['Type Info.'])
                 merged_info['RPE'] = psf.sumNanStr(
                     merged_info['RPE'], value['RPE'])
+                # Float Data
                 merged_data = psf.sumNanNum(merged_data, data.values)
+                # Str Data
+                merged_memo['Injury'] = psf.sumNanStr(
+                    merged_memo['Injury'], value['Injury'])
+                merged_memo['Memo'] = psf.sumNanStr(
+                    merged_memo['Memo'], value['Memo'])
+                # Max Speed
                 max_speed = psf.getMax(
                     max_speed, data['Max Speed'].values)
 
         merged_data = pd.DataFrame(merged_data, columns=columns)
         merged_data['Max Speed'] = pd.Series(max_speed)
         merged_data = merged_data.round(1)
-        # merge info, data
-        merged_df = pd.concat([merged_info, merged_data], axis=1)
+        # merge info, data, memo
+        merged_df = pd.concat([merged_info, merged_data, merged_memo], axis=1)
         merged_df['dayOn'] = merged_df.Name.apply(lambda x: x in unique_name)
         workout_date = str(wInfo['Date'].values[0])
         self.file_set[workout_date]['Player'] = unique_name
